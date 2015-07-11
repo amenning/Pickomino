@@ -1,4 +1,4 @@
-package Version4;
+package Version5;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,12 +10,15 @@ import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Panel;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -29,6 +32,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 public class Gui extends JFrame {
 	
@@ -49,8 +53,11 @@ public class Gui extends JFrame {
 	private static String WinningPlayerName;
 	private int ActiveDiceFaceRemainingCheck;
 	private static boolean ActiveDiceButtonsAreGreen=true;
+	private static boolean GrillWormButtonsAreGreen=true;
 	private int activedicenumberselected=0;
+	private int activegrillwormnumberselected=0;
 	private static boolean listenfordicenumber=true;
+	private static boolean listenforgrillwormnumber=false;
 	
 	ArrayList<JButton> GrillWormButtons = new ArrayList<JButton>();
 	ArrayList<JButton> ActiveDiceButtons = new ArrayList<JButton>();
@@ -83,6 +90,9 @@ public class Gui extends JFrame {
 	private ImageIcon FourWormTileIcon = new ImageIcon(getClass().getResource("FourWormTile.png"));
 	private Image FourWormTileImage = FourWormTileIcon.getImage();
 	
+	private ImageIcon BackgroundImageIcon = new ImageIcon(getClass().getResource("BackgroundImage.png"));
+	private Image BackgroundImage = BackgroundImageIcon.getImage();
+	
 	//private JButton RollDiceButton;
 	private JButton RollDiceButtonGray;
 	private JButton RollDiceButtonGreen;
@@ -107,7 +117,7 @@ public class Gui extends JFrame {
 	
 	public static Font TitleMessageFont = new Font("SansSerif", Font.BOLD, 20);
 	
-	private JPanel MainPane;
+	private ImagePanel MainPane;
 	private JPanel GamePane;
 	//private JPanel GameStatusPaneMain;
 	//private JPanel GameStatusPaneTitle;
@@ -141,18 +151,26 @@ public class Gui extends JFrame {
 				}
 		}
 		for(int x=0; x<NUMBEROFPLAYERS; x++){
-			PlayerWormsArray.add(new PlayerWorms(JOptionPane.showInputDialog(null, String.format("What is Player %s's name?", x+1))));
+			PlayerWormsArray.add(x, new PlayerWorms(JOptionPane.showInputDialog(null, String.format("What is Player %s's name?", x+1))));
+			if(PlayerWormsArray.get(x).playername.equals("Duc") || PlayerWormsArray.get(x).playername.equals("Huy") || PlayerWormsArray.get(x).playername.equals("duc") || PlayerWormsArray.get(x).playername.equals("huy") || PlayerWormsArray.get(x).playername.equals("DHN") || PlayerWormsArray.get(x).playername.equals("dhn")){
+				JOptionPane.showMessageDialog(null, "Oh, It's my love ^_^   <3 <3 <3");
+			}
 			ActivePlayerActionsArray.add(new ActivePlayerActions(PlayerWormsArray.get(x)));
 			ScoreArray.add(x,0);
 		}		
 		currentplayerworms = PlayerWormsArray.get(ActivePlayerCount);
 		currentplayeractions = ActivePlayerActionsArray.get(ActivePlayerCount);
 		
-		MainPane = new JPanel(new BorderLayout());
-        MainPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		//MainPane = new JPanel(new BorderLayout());
+        //MainPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        //ImagePanel MainPaneImagePanel = new ImagePanel(new ImageIcon("BackgroundImage.png").getImage());
+        MainPane = new ImagePanel();
+        MainPane.setLayout(new BorderLayout());
+        
         
 		GamePane = new JPanel();
 		GamePane.setLayout(new GridBagLayout());
+		GamePane.setOpaque(false);
 		
 //		GameStatusPaneMain = new JPanel();
 //		GameStatusPaneTitle = new JPanel();
@@ -171,8 +189,11 @@ public class Gui extends JFrame {
 //		GameStatusPaneMain.add(GameStatusPaneOutput, BorderLayout.CENTER);
 		
 		GrillPaneMain = new JPanel();
+		GrillPaneMain.setOpaque(false);
 		GrillPaneTitle = new JPanel();
+		GrillPaneTitle.setOpaque(false);
 		GrillPaneWorms = new JPanel();
+		GrillPaneWorms.setOpaque(false);
 		GrillPaneMain.setLayout(new BorderLayout());
 		GrillPaneMain.setPreferredSize(new Dimension(800,125));
 		GrillPaneTitle.setLayout(new BorderLayout());
@@ -187,24 +208,31 @@ public class Gui extends JFrame {
 			GrillPaneWorms.add(GrillWormButtons.get(x));
 		}
 		GrillPaneTextField = new JTextField("          " + "Worms On The Grill" + "          ");
+		GrillPaneTextField.setEditable(false);
+		GrillPaneTextField.setOpaque(false);
 		GrillPaneTextField.setFont(TitleMessageFont);
 		GrillPaneTextField.setHorizontalAlignment(JTextField.CENTER);
 		GrillPaneTextField.setBackground(null);
 		GrillPaneTextField.setBorder(null);
 		GrillPaneTitle.add(GrillPaneTextField);
 		GrillPaneMain.add(GrillPaneTitle, BorderLayout.NORTH);
-		GrillPaneMain.add(GrillPaneWorms, BorderLayout.CENTER);		
+		GrillPaneMain.add(GrillPaneWorms, BorderLayout.CENTER);
 	
 		ActiveDicePaneMain = new JPanel();
+		ActiveDicePaneMain.setOpaque(false);
 		ActiveDicePaneTitle = new JPanel();
+		ActiveDicePaneTitle.setOpaque(false);
 		ActiveDicePaneDice = new JPanel();
+		ActiveDicePaneDice.setOpaque(false);
 		ActiveDicePaneMain.setLayout(new BorderLayout());
-		ActiveDicePaneMain.setPreferredSize(new Dimension(600,60));
+		ActiveDicePaneMain.setPreferredSize(new Dimension(600,70));
 		ActiveDicePaneTitle.setLayout(new BorderLayout());
 		ActiveDicePaneTitle.setPreferredSize(new Dimension(800,25));
 		ActiveDicePaneDice.setLayout(new FlowLayout());
-		ActiveDicePaneDice.setPreferredSize(new Dimension(400,35));
+		ActiveDicePaneDice.setPreferredSize(new Dimension(400,45));
 		ActiveDiceTextField = new JTextField("          " + "Active Dice" + "          ");
+		ActiveDiceTextField.setOpaque(false);
+		ActiveDiceTextField.setEditable(false);
 		ActiveDiceTextField.setFont(TitleMessageFont);
 		ActiveDiceTextField.setHorizontalAlignment(JTextField.CENTER);
 		ActiveDiceTextField.setBackground(null);
@@ -215,15 +243,20 @@ public class Gui extends JFrame {
 		ActiveDicePaneMain.add(ActiveDicePaneDice, BorderLayout.CENTER);
 		
 		FrozenDicePaneMain = new JPanel();
+		FrozenDicePaneMain.setOpaque(false);
 		FrozenDicePaneTitle = new JPanel();
+		FrozenDicePaneTitle.setOpaque(false);
 		FrozenDicePaneDice = new JPanel();
+		FrozenDicePaneDice.setOpaque(false);
 		FrozenDicePaneMain.setLayout(new BorderLayout());
-		FrozenDicePaneMain.setPreferredSize(new Dimension(600,60));
+		FrozenDicePaneMain.setPreferredSize(new Dimension(600,70));
 		FrozenDicePaneTitle.setLayout(new BorderLayout());
 		FrozenDicePaneTitle.setPreferredSize(new Dimension(200,25));
 		FrozenDicePaneDice.setLayout(new FlowLayout());
-		FrozenDicePaneDice.setPreferredSize(new Dimension(400,35));
+		FrozenDicePaneDice.setPreferredSize(new Dimension(400,45));
 		FrozenDiceTextField = new JTextField("          " + "Frozen Dice" + "          ");
+		FrozenDiceTextField.setOpaque(false);
+		FrozenDiceTextField.setEditable(false);
 		FrozenDiceTextField.setFont(TitleMessageFont);
 		FrozenDiceTextField.setHorizontalAlignment(JTextField.CENTER);
 		FrozenDiceTextField.setBackground(null);
@@ -234,8 +267,11 @@ public class Gui extends JFrame {
 		FrozenDicePaneMain.add(FrozenDicePaneDice, BorderLayout.CENTER);
 		
 		DiceSumPaneMain = new JPanel();
+		DiceSumPaneMain.setOpaque(false);
 		DiceSumPaneTitle = new JPanel();
+		DiceSumPaneTitle.setOpaque(false);
 		DiceSumPaneOutput = new JPanel();
+		DiceSumPaneOutput.setOpaque(false);
 		DiceSumPaneMain.setLayout(new BorderLayout());
 		//DiceSumPaneMain.setPreferredSize(new Dimension(600,30));
 		DiceSumPaneTitle.setLayout(new FlowLayout());
@@ -243,26 +279,35 @@ public class Gui extends JFrame {
 		DiceSumPaneOutput.setLayout(new FlowLayout());
 		//DiceSumPaneOutput.setPreferredSize(new Dimension(400,15));
 		DiceSumTitlePaneTextField = new JTextField("     " + "Sum of All Dice" + "     ");
+		DiceSumTitlePaneTextField.setOpaque(false);
+		DiceSumTitlePaneTextField.setEditable(false);
 		DiceSumTitlePaneTextField.setFont(TitleMessageFont);
 		DiceSumTitlePaneTextField.setHorizontalAlignment(JTextField.CENTER);
 		DiceSumTitlePaneTextField.setBackground(null);
 		DiceSumTitlePaneTextField.setBorder(null);
 		DiceSumPaneTitle.add(DiceSumTitlePaneTextField);		
 		DiceSumOutputPaneTextField = new JTextField("     " + Dice.dicesum + "     ");
+		//DiceSumOutputPaneTextField.setOpaque(false);
+		DiceSumOutputPaneTextField.setEditable(false);
 		DiceSumPaneOutput.add(DiceSumOutputPaneTextField);
 		DiceSumPaneMain.add(DiceSumPaneTitle, BorderLayout.PAGE_START);
 		DiceSumPaneMain.add(DiceSumPaneOutput, BorderLayout.PAGE_END);
 		
 		OptionPaneMain = new JPanel();
+		OptionPaneMain.setOpaque(false);
 		OptionPaneTitle = new JPanel();
+		OptionPaneTitle.setOpaque(false);
 		OptionPaneOptions = new JPanel();
+		OptionPaneOptions.setOpaque(false);
 		OptionPaneMain.setLayout(new BorderLayout());
-		OptionPaneMain.setPreferredSize(new Dimension(600,60));
+		OptionPaneMain.setPreferredSize(new Dimension(600,70));
 		OptionPaneTitle.setLayout(new FlowLayout());
-		OptionPaneTitle.setPreferredSize(new Dimension(200,25));
+		OptionPaneTitle.setPreferredSize(new Dimension(200,35));
 		OptionPaneOptions.setLayout(new FlowLayout());
 		OptionPaneOptions.setPreferredSize(new Dimension(400,35));
 		OptionPaneTextField = new JTextField("          " + "Player Options" + "          ");
+		OptionPaneTextField.setOpaque(false);
+		OptionPaneTextField.setEditable(false);
 		OptionPaneTextField.setFont(TitleMessageFont);
 		OptionPaneTextField.setHorizontalAlignment(JTextField.CENTER);
 		OptionPaneTextField.setBackground(null);
@@ -353,6 +398,7 @@ public class Gui extends JFrame {
 		for(int x=0; x<NUMBEROFPLAYERS; x++){
 			PlayerWormPanelArray.add(new createPlayerWormPanels(PlayerWormsArray.get(x).playername, x+1));
 			if(ActivePlayerCount==x){
+				PlayerWormPanelArray.get(x).PlayerWormsTextField.setOpaque(true);
 				PlayerWormPanelArray.get(x).PlayerWormsTextField.setBackground(Color.GREEN);
 			}
 			gbc.anchor = GridBagConstraints.CENTER;
@@ -380,7 +426,7 @@ public class Gui extends JFrame {
 		
 		handler = new HandlerClass();
 		for(int x=0; x<Grill.grillworms.size(); x++){
-			GrillWormButtons.get(x).addActionListener(handler);
+			GrillWormButtons.get(x).addActionListener(new GrillWormsHandlerClass(Grill.grillworms.get(x)));
 		}
 		//RollDiceButton.addActionListener(handler);
 		RollDiceButtonGreen.addActionListener(handler);
@@ -423,6 +469,41 @@ public class Gui extends JFrame {
 				else if(Dice.FrozenDiceList.contains(activedicenumberselected)){
 					JOptionPane.showMessageDialog(null, "You already froze that number, pick another number!");
 					listenfordicenumber=true;
+				}
+			}
+			performGamePanelUpdate();		
+			//JOptionPane.showMessageDialog(null, "Dice number " + setdicenumber + " was pressed");
+		}
+		
+	}
+	
+public class GrillWormsHandlerClass implements ActionListener {
+		
+		private int setwormnumber;
+		
+		public GrillWormsHandlerClass(int wormnumber){
+			setwormnumber=wormnumber;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			activedicenumberselected=0;
+			if(listenforgrillwormnumber){
+				activegrillwormnumberselected=setwormnumber;
+			}
+			
+			if(activegrillwormnumberselected!=0){
+				if(Dice.dicesum>=activegrillwormnumberselected){
+					currentplayeractions.performTakeWormFromGrill(activegrillwormnumberselected);
+					Grill.RemovePrizeWormFromGrill(activegrillwormnumberselected);
+					currentplayeractions.dicerollavailable=true;
+					GrillWormButtonsAreGreen=false;
+					listenforgrillwormnumber=false;
+					TakeWormFromPlayerButtonAvailable=false;
+					TakeWormFromGrillButtonAvailable=false;
+					listenfordicenumber=true;
+					EndPlayerTurn=true;
 				}
 			}
 			performGamePanelUpdate();		
@@ -528,6 +609,7 @@ public class Gui extends JFrame {
 						if(Grill.CheckIfPrizeWormIsOnGrill(Dice.dicesum)){
 							currentplayeractions.performTakeWormFromGrill(Dice.dicesum);
 							currentplayeractions.dicerollavailable=true;
+							GrillWormButtonsAreGreen=false;
 							TakeWormFromPlayerButtonAvailable=false;
 							TakeWormFromGrillButtonAvailable=false;
 							listenfordicenumber=true;
@@ -535,16 +617,12 @@ public class Gui extends JFrame {
 							EndPlayerTurn=true;
 						}
 						else{
-							int takewormvalue=Integer.valueOf(JOptionPane.showInputDialog("Which worm would you like to take from the grill?"));
-							if(Grill.CheckIfPrizeWormIsOnGrill(takewormvalue) && Dice.dicesum>=takewormvalue){
-								currentplayeractions.performTakeWormFromGrill(takewormvalue);
-								currentplayeractions.dicerollavailable=true;
+								GrillWormButtonsAreGreen=true;
+								listenforgrillwormnumber=true;
+								currentplayeractions.dicerollavailable=false;
 								TakeWormFromPlayerButtonAvailable=false;
 								TakeWormFromGrillButtonAvailable=false;
-//								FreezeDiceButtonAvailable=false;
-								listenfordicenumber=true;
-								EndPlayerTurn=true;
-							}
+								listenfordicenumber=false;
 						}
 					}
 					else if(Dice.FrozenDiceList.contains(6) && Dice.dicesum<Grill.grillworms.get(0)){
@@ -713,11 +791,19 @@ public class Gui extends JFrame {
 		GrillWormButtons.clear();
 		GrillPaneWorms.removeAll();
 		for(int x=0; x<Grill.grillworms.size(); x++){
-			GrillWormButtons.add(new JButton(Grill.grillworms.get(x).toString(), setWormTileImage(Grill.grillworms.get(x))));
+			if(GrillWormButtonsAreGreen && Grill.grillworms.get(x)<=Dice.dicesum){
+				GrillWormButtons.add(new JGradientButton(Grill.grillworms.get(x).toString(), Color.GREEN));
+				GrillWormButtons.get(x).setIcon(setWormTileImage(Grill.grillworms.get(x)));
+				GrillWormButtons.get(x).setBorder(new LineBorder(Color.GREEN, 4));
+				
+			}	
+			else{
+				GrillWormButtons.add(new JButton(Grill.grillworms.get(x).toString(), setWormTileImage(Grill.grillworms.get(x))));
+			}
 			GrillWormButtons.get(x).setVerticalTextPosition(SwingConstants.TOP);
 			GrillWormButtons.get(x).setHorizontalTextPosition(SwingConstants.CENTER);
 			GrillWormButtons.get(x).setPreferredSize(new Dimension(60,80));
-			GrillWormButtons.get(x).addActionListener(handler);
+			GrillWormButtons.get(x).addActionListener(new GrillWormsHandlerClass(Grill.grillworms.get(x)));
 			GrillPaneWorms.add(GrillWormButtons.get(x));
 		}
 
@@ -767,16 +853,18 @@ public class Gui extends JFrame {
 	
 	private void performDiceSumPaneupdate(){
 		DiceSumOutputPaneTextField.setText("     " + Dice.dicesum + "     ");
+		DiceSumOutputPaneTextField.setEditable(false);
 	}
 	private void performActiveDicePaneupdate(){
 		ActiveDiceButtons.clear();
 		ActiveDicePaneDice.removeAll();
 		for(int x=0; x<Dice.ActiveDiceList.size(); x++){
 			if(ActiveDiceButtonsAreGreen && Dice.FrozenDiceList.contains(Dice.ActiveDiceList.get(x))==false){
-				ActiveDiceButtons.add(new JGradientButton(Color.GREEN));
+				ActiveDiceButtons.add(x, new JGradientButton(Color.GREEN));
+				ActiveDiceButtons.get(x).setBorder(new LineBorder(Color.GREEN, 4));
 			}
 			else{
-				ActiveDiceButtons.add(new JButton());
+				ActiveDiceButtons.add(x, new JButton());
 			}
 			ActiveDiceButtons.get(x).setIcon(setDiceImage(Dice.ActiveDiceList.get(x)));
 			ActiveDiceButtons.get(x).setPreferredSize(new Dimension(60,60));
@@ -805,10 +893,12 @@ public class Gui extends JFrame {
 			PlayerWormPanelArray.get(x).PlayerWormsPaneWorms.removeAll();
 			PlayerWormButtons.clear();
 			if(ActivePlayerCount==x){
+				PlayerWormPanelArray.get(x).PlayerWormsTextField.setOpaque(true);
 				PlayerWormPanelArray.get(x).PlayerWormsTextField.setBackground(Color.GREEN);
 			}
 			else{
 				PlayerWormPanelArray.get(x).PlayerWormsTextField.setBackground(null);
+				PlayerWormPanelArray.get(x).PlayerWormsTextField.setOpaque(false);
 			}
 			for(int y=0; y<PlayerWormsArray.get(x).playerwormsarraylist.size(); y++){
 				//PlayerWormButtons.add(new JButton(PlayerWormsArray.get(x).playerwormsarraylist.get(y).toString()));
@@ -865,8 +955,11 @@ class createPlayerWormPanels extends JFrame{
 	
 	createPlayerWormPanels(String playername, int playernumber){
 	PlayerWormsPaneMain = new JPanel();
+	PlayerWormsPaneMain.setOpaque(false);
 	PlayerWormsPaneTitle = new JPanel();
+	PlayerWormsPaneTitle.setOpaque(false);
 	PlayerWormsPaneWorms = new JPanel();
+	PlayerWormsPaneWorms.setOpaque(false);
 	PlayerWormsPaneMain.setLayout(new BorderLayout());
 	PlayerWormsPaneMain.setPreferredSize(new Dimension(800,135));
 	PlayerWormsPaneTitle.setLayout(new FlowLayout());
@@ -874,6 +967,8 @@ class createPlayerWormPanels extends JFrame{
 	PlayerWormsPaneWorms.setLayout(new FlowLayout());
 	PlayerWormsPaneWorms.setPreferredSize(new Dimension(800,100));
 	PlayerWormsTextField = new JTextField("          " + playernumber + ". " + playername + "'s Worms" + "          ");
+	PlayerWormsTextField.setOpaque(false);
+	PlayerWormsTextField.setEditable(false);
 	PlayerWormsTextField.setFont(Gui.TitleMessageFont);
 	PlayerWormsTextField.setHorizontalAlignment(JTextField.CENTER);
 	PlayerWormsTextField.setBackground(null);
@@ -884,3 +979,23 @@ class createPlayerWormPanels extends JFrame{
 	}
 	
 }
+
+class ImagePanel extends JPanel {
+
+	  private Image img;
+
+	  public ImagePanel() {
+		img=new ImageIcon("BackgroundImage.png").getImage();
+	    Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+	    setPreferredSize(size);
+	    setMinimumSize(size);
+	    setMaximumSize(size);
+	    setSize(size);
+	    setLayout(new BorderLayout());
+	  }
+
+	  public void paintComponent(Graphics g) {
+	    g.drawImage(img, 0, 0, null);
+	  }
+
+	}

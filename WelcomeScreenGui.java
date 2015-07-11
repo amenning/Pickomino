@@ -1,4 +1,4 @@
-package Version4;
+package Version5;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -47,6 +47,7 @@ public class WelcomeScreenGui extends JFrame {
         
 		WelcomeMessagePane = new JPanel(new BorderLayout());		
 		WelcomeMessageTextField = new JTextField("Welcome to Pickomino!  Please Press Start to Begin!");
+		WelcomeMessageTextField.setEditable(false);
 		Font WelcomeMessageFont = new Font("SansSerif", Font.BOLD, 20);
 		WelcomeMessageTextField.setFont(WelcomeMessageFont);
 		WelcomeMessageTextField.setHorizontalAlignment(JTextField.CENTER);
