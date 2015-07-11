@@ -1,4 +1,4 @@
-package Version3;
+package Version4;
 
 import java.awt.Color;
 import java.awt.GradientPaint;

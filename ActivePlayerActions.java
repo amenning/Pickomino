@@ -1,4 +1,4 @@
-package Version3;
+package Version4;
 import java.util.*;
 
 import javax.swing.JOptionPane;
@@ -44,7 +44,7 @@ public class ActivePlayerActions {
 //			performPlayerBunk();
 //		}
 		playeroption=0;
-		Gui.FreezeDiceButtonAvailable=true;
+//		Gui.FreezeDiceButtonAvailable=true;
 	}
 
 	public void performPlayerBunk(){
@@ -57,7 +57,7 @@ public class ActivePlayerActions {
 			dicerollavailable=false;
 			Dice.bunk=false;
 			Gui.EndPlayerTurn=true;
-			Gui.FreezeDiceButtonAvailable=true;
+	//		Gui.FreezeDiceButtonAvailable=true;
 		}
 		else{
 			//Grill.RemoveHighestWormFromGrill();
@@ -67,7 +67,7 @@ public class ActivePlayerActions {
 			dicerollavailable=false;
 			Dice.bunk=false;
 			Gui.EndPlayerTurn=true;
-			Gui.FreezeDiceButtonAvailable=true;
+	//		Gui.FreezeDiceButtonAvailable=true;
 		}
 
 	}
@@ -81,7 +81,7 @@ public class ActivePlayerActions {
 			}
 			else{
 				Dice.moveDiceToFrozen(playerinputinteger);
-				Gui.FreezeDiceButtonAvailable=false;
+		//		Gui.FreezeDiceButtonAvailable=false;
 			}
 		}
 	
@@ -121,7 +121,7 @@ public class ActivePlayerActions {
 			ForbiddenHoldNumbers.clear();
 			Dice.restartAllDice();
 			optionsopen=false;
-			Gui.FreezeDiceButtonAvailable=true;
+			//Gui.FreezeDiceButtonAvailable=true;
 			
 	}
 	

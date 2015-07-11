@@ -1,4 +1,4 @@
-package Version3;
+package Version4;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -42,15 +42,15 @@ public class Gui extends JFrame {
 	private Dice dice;
 	private int NUMBEROFPLAYERS;
 	private String inputvalue;
-	public static boolean FreezeDiceButtonAvailable = true;
-	public static boolean TakeWormFromGrillButtonAvailable = true;
-	public static boolean TakeWormFromPlayerButtonAvailable = true;
+	//public static boolean FreezeDiceButtonAvailable = true;
+	public static boolean TakeWormFromGrillButtonAvailable = false;
+	public static boolean TakeWormFromPlayerButtonAvailable = false;
 	private static int WinningPlayerScore;
 	private static String WinningPlayerName;
 	private int ActiveDiceFaceRemainingCheck;
-	private static boolean ActiveDiceButtonsAreGreen=false;
+	private static boolean ActiveDiceButtonsAreGreen=true;
 	private int activedicenumberselected=0;
-	private static boolean listenfordicenumber=false;
+	private static boolean listenfordicenumber=true;
 	
 	ArrayList<JButton> GrillWormButtons = new ArrayList<JButton>();
 	ArrayList<JButton> ActiveDiceButtons = new ArrayList<JButton>();
@@ -87,8 +87,8 @@ public class Gui extends JFrame {
 	private JButton RollDiceButtonGray;
 	private JButton RollDiceButtonGreen;
 	//private JButton FreezeDiceButton;
-	private JButton FreezeDiceButtonGray;
-	private JButton FreezeDiceButtonGreen;
+	//private JButton FreezeDiceButtonGray;
+	//private JButton FreezeDiceButtonGreen;
 	//private JButton TakeWormFromGrillButton;
 	private JButton TakeWormFromGrillButtonGreen;
 	private JButton TakeWormFromGrillButtonGray;
@@ -104,6 +104,8 @@ public class Gui extends JFrame {
 	private JTextField DiceSumOutputPaneTextField;
 	private JTextField OptionPaneTextField;
 	private JTextField GrillPaneTextField;
+	
+	public static Font TitleMessageFont = new Font("SansSerif", Font.BOLD, 20);
 	
 	private JPanel MainPane;
 	private JPanel GamePane;
@@ -173,9 +175,9 @@ public class Gui extends JFrame {
 		GrillPaneWorms = new JPanel();
 		GrillPaneMain.setLayout(new BorderLayout());
 		GrillPaneMain.setPreferredSize(new Dimension(800,125));
-		GrillPaneTitle.setLayout(new FlowLayout());
-		GrillPaneTitle.setPreferredSize(new Dimension(200,25));
-		GrillPaneWorms.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
+		GrillPaneTitle.setLayout(new BorderLayout());
+		GrillPaneTitle.setPreferredSize(new Dimension(800,25));
+		GrillPaneWorms.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 5));
 		GrillPaneWorms.setPreferredSize(new Dimension(800,100));
 		for(int x=0; x<Grill.grillworms.size(); x++){
 			GrillWormButtons.add(new JButton(Grill.grillworms.get(x).toString(), setWormTileImage(Grill.grillworms.get(x))));
@@ -185,6 +187,10 @@ public class Gui extends JFrame {
 			GrillPaneWorms.add(GrillWormButtons.get(x));
 		}
 		GrillPaneTextField = new JTextField("          " + "Worms On The Grill" + "          ");
+		GrillPaneTextField.setFont(TitleMessageFont);
+		GrillPaneTextField.setHorizontalAlignment(JTextField.CENTER);
+		GrillPaneTextField.setBackground(null);
+		GrillPaneTextField.setBorder(null);
 		GrillPaneTitle.add(GrillPaneTextField);
 		GrillPaneMain.add(GrillPaneTitle, BorderLayout.NORTH);
 		GrillPaneMain.add(GrillPaneWorms, BorderLayout.CENTER);		
@@ -194,11 +200,15 @@ public class Gui extends JFrame {
 		ActiveDicePaneDice = new JPanel();
 		ActiveDicePaneMain.setLayout(new BorderLayout());
 		ActiveDicePaneMain.setPreferredSize(new Dimension(600,60));
-		ActiveDicePaneTitle.setLayout(new FlowLayout());
-		ActiveDicePaneTitle.setPreferredSize(new Dimension(200,25));
+		ActiveDicePaneTitle.setLayout(new BorderLayout());
+		ActiveDicePaneTitle.setPreferredSize(new Dimension(800,25));
 		ActiveDicePaneDice.setLayout(new FlowLayout());
 		ActiveDicePaneDice.setPreferredSize(new Dimension(400,35));
 		ActiveDiceTextField = new JTextField("          " + "Active Dice" + "          ");
+		ActiveDiceTextField.setFont(TitleMessageFont);
+		ActiveDiceTextField.setHorizontalAlignment(JTextField.CENTER);
+		ActiveDiceTextField.setBackground(null);
+		ActiveDiceTextField.setBorder(null);
 		ActiveDicePaneTitle.add(ActiveDiceTextField);
 		performActiveDicePaneupdate();
 		ActiveDicePaneMain.add(ActiveDicePaneTitle, BorderLayout.NORTH);
@@ -209,11 +219,15 @@ public class Gui extends JFrame {
 		FrozenDicePaneDice = new JPanel();
 		FrozenDicePaneMain.setLayout(new BorderLayout());
 		FrozenDicePaneMain.setPreferredSize(new Dimension(600,60));
-		FrozenDicePaneTitle.setLayout(new FlowLayout());
+		FrozenDicePaneTitle.setLayout(new BorderLayout());
 		FrozenDicePaneTitle.setPreferredSize(new Dimension(200,25));
 		FrozenDicePaneDice.setLayout(new FlowLayout());
 		FrozenDicePaneDice.setPreferredSize(new Dimension(400,35));
 		FrozenDiceTextField = new JTextField("          " + "Frozen Dice" + "          ");
+		FrozenDiceTextField.setFont(TitleMessageFont);
+		FrozenDiceTextField.setHorizontalAlignment(JTextField.CENTER);
+		FrozenDiceTextField.setBackground(null);
+		FrozenDiceTextField.setBorder(null);
 		FrozenDicePaneTitle.add(FrozenDiceTextField);
 		performFrozenDicePaneupdate();
 		FrozenDicePaneMain.add(FrozenDicePaneTitle, BorderLayout.NORTH);
@@ -229,6 +243,10 @@ public class Gui extends JFrame {
 		DiceSumPaneOutput.setLayout(new FlowLayout());
 		//DiceSumPaneOutput.setPreferredSize(new Dimension(400,15));
 		DiceSumTitlePaneTextField = new JTextField("     " + "Sum of All Dice" + "     ");
+		DiceSumTitlePaneTextField.setFont(TitleMessageFont);
+		DiceSumTitlePaneTextField.setHorizontalAlignment(JTextField.CENTER);
+		DiceSumTitlePaneTextField.setBackground(null);
+		DiceSumTitlePaneTextField.setBorder(null);
 		DiceSumPaneTitle.add(DiceSumTitlePaneTextField);		
 		DiceSumOutputPaneTextField = new JTextField("     " + Dice.dicesum + "     ");
 		DiceSumPaneOutput.add(DiceSumOutputPaneTextField);
@@ -245,14 +263,18 @@ public class Gui extends JFrame {
 		OptionPaneOptions.setLayout(new FlowLayout());
 		OptionPaneOptions.setPreferredSize(new Dimension(400,35));
 		OptionPaneTextField = new JTextField("          " + "Player Options" + "          ");
+		OptionPaneTextField.setFont(TitleMessageFont);
+		OptionPaneTextField.setHorizontalAlignment(JTextField.CENTER);
+		OptionPaneTextField.setBackground(null);
+		OptionPaneTextField.setBorder(null);
 		OptionPaneTitle.add(OptionPaneTextField);
 		//RollDiceButton = new JButton("Roll Dice Again");;
 		//RollDiceButton.setBackground(Color.GRAY);
 		RollDiceButtonGreen = new JGradientButton("Roll Dice Again", Color.GREEN);
 		RollDiceButtonGray = new JGradientButton("Roll Dice Again", Color.GRAY);
 		//FreezeDiceButton = new JButton("Freeze Dice Grouping");
-		FreezeDiceButtonGreen = new JGradientButton("Freeze Dice Grouping", Color.GREEN);
-		FreezeDiceButtonGray = new JGradientButton("Freeze Dice Grouping", Color.GRAY);
+		//FreezeDiceButtonGreen = new JGradientButton("Freeze Dice Grouping", Color.GREEN);
+		//FreezeDiceButtonGray = new JGradientButton("Freeze Dice Grouping", Color.GRAY);
 		//TakeWormFromGrillButton = new JButton("Take Worm From Grill");
 		TakeWormFromGrillButtonGreen = new JGradientButton("Take Worm From Grill", Color.GREEN);
 		TakeWormFromGrillButtonGray = new JGradientButton("Take Worm From Grill", Color.GRAY);
@@ -261,7 +283,7 @@ public class Gui extends JFrame {
 		TakeWormFromPlayerButtonGray = new JGradientButton("Take Worm From Player", Color.GRAY);
 		//OptionPaneOptions.add(RollDiceButton);
 		OptionPaneOptions.add(RollDiceButtonGray);
-		OptionPaneOptions.add(FreezeDiceButtonGreen);
+		//OptionPaneOptions.add(FreezeDiceButtonGreen);
 		OptionPaneOptions.add(TakeWormFromGrillButtonGreen);
 		if(NUMBEROFPLAYERS>1){
 			OptionPaneOptions.add(TakeWormFromPlayerButtonGreen);
@@ -363,8 +385,8 @@ public class Gui extends JFrame {
 		//RollDiceButton.addActionListener(handler);
 		RollDiceButtonGreen.addActionListener(handler);
 		RollDiceButtonGray.addActionListener(handler);
-		FreezeDiceButtonGreen.addActionListener(handler);
-		FreezeDiceButtonGray.addActionListener(handler);
+		//FreezeDiceButtonGreen.addActionListener(handler);
+		//FreezeDiceButtonGray.addActionListener(handler);
 		TakeWormFromGrillButtonGreen.addActionListener(handler);
 		TakeWormFromGrillButtonGray.addActionListener(handler);
 		TakeWormFromPlayerButtonGreen.addActionListener(handler);
@@ -384,7 +406,6 @@ public class Gui extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			activedicenumberselected=0;
-			
 			if(listenfordicenumber){
 				activedicenumberselected=setdicenumber;
 				listenfordicenumber=false;
@@ -393,17 +414,17 @@ public class Gui extends JFrame {
 			if(activedicenumberselected!=0){
 				if(Dice.FrozenDiceList.contains(activedicenumberselected)==false){
 					currentplayeractions.performFreezeDice(activedicenumberselected);
-					FreezeDiceButtonAvailable=false;
+					//FreezeDiceButtonAvailable=false;
 					currentplayeractions.dicerollavailable=true;
 					TakeWormFromPlayerButtonAvailable=true;
 					TakeWormFromGrillButtonAvailable=true;
 					ActiveDiceButtonsAreGreen=false;
 				}
-				else if(Dice.FrozenDiceList.contains(Integer.valueOf(inputvalue))){
+				else if(Dice.FrozenDiceList.contains(activedicenumberselected)){
 					JOptionPane.showMessageDialog(null, "You already froze that number, pick another number!");
+					listenfordicenumber=true;
 				}
 			}
-			
 			performGamePanelUpdate();		
 			//JOptionPane.showMessageDialog(null, "Dice number " + setdicenumber + " was pressed");
 		}
@@ -415,6 +436,10 @@ public class Gui extends JFrame {
 			if(event.getActionCommand()==RollDiceButtonGreen.getText() || event.getActionCommand()==RollDiceButtonGray.getText()){
 				if(currentplayeractions.dicerollavailable && TakeWormFromGrillButtonAvailable && TakeWormFromPlayerButtonAvailable){
 					currentplayeractions.performRollDice();
+					//FreezeDiceButtonAvailable=false;
+					performGamePanelUpdate();
+					activedicenumberselected=0;
+					listenfordicenumber=true;
 					performGamePanelUpdate();
 					if(Dice.bunk==true){
 						JOptionPane.showMessageDialog(null, "You have bunked!");
@@ -447,8 +472,11 @@ public class Gui extends JFrame {
 						JOptionPane.showMessageDialog(null, "You cannot roll anymore and you cannot take a worm; you have bunked!");
 						currentplayeractions.performPlayerBunk();
 					}
+					ActiveDiceButtonsAreGreen=true;
 					currentplayeractions.dicerollavailable=false;
-					FreezeDiceButtonAvailable=true;
+					TakeWormFromPlayerButtonAvailable=false;
+					TakeWormFromGrillButtonAvailable=false;
+					//FreezeDiceButtonAvailable=true;
 //					listenfordicenumber=true;
 //					ActiveDiceButtonsAreGreen=true;
 					performGamePanelUpdate();
@@ -456,9 +484,10 @@ public class Gui extends JFrame {
 				}
 				else if(currentplayeractions.dicerollavailable==true && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
 					Dice.restartAllDice();
-					FreezeDiceButtonAvailable=true;
-					TakeWormFromGrillButtonAvailable=true;
-					TakeWormFromPlayerButtonAvailable=true;
+//					FreezeDiceButtonAvailable=true;
+					ActiveDiceButtonsAreGreen=true;
+					TakeWormFromGrillButtonAvailable=false;
+					TakeWormFromPlayerButtonAvailable=false;
 					currentplayeractions.dicerollavailable=false;
 					performGamePanelUpdate();
 					performEndOfGameCheck();
@@ -470,29 +499,29 @@ public class Gui extends JFrame {
 					JOptionPane.showMessageDialog(null, String.format("You must freeze dice or take a worm!"));
 				}
 			}
-			else if(event.getActionCommand()==FreezeDiceButtonGreen.getText() || event.getActionCommand()==FreezeDiceButtonGray.getText()){
-				if(FreezeDiceButtonAvailable){
-					ActiveDiceButtonsAreGreen=true;
-					currentplayeractions.dicerollavailable=false;
-					TakeWormFromPlayerButtonAvailable=false;
-					TakeWormFromGrillButtonAvailable=false;
-					FreezeDiceButtonAvailable=false;
-					performGamePanelUpdate();
-					activedicenumberselected=0;
-					listenfordicenumber=true;
-				}
-				else if(currentplayeractions.dicerollavailable==false && FreezeDiceButtonAvailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
-					JOptionPane.showMessageDialog(null, String.format("You must select a number to freeze from the active dice"));
-				}
-				else if(currentplayeractions.dicerollavailable && FreezeDiceButtonAvailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromPlayerButtonAvailable==false){
-					JOptionPane.showMessageDialog(null, "You must first reroll the dice!");
-				}
-				else{
-					JOptionPane.showMessageDialog(null, String.format("You can only freeze one grouping per roll"));
-				}
-				performGamePanelUpdate();
-				performEndOfGameCheck();
-			}
+//			else if(event.getActionCommand()==FreezeDiceButtonGreen.getText() || event.getActionCommand()==FreezeDiceButtonGray.getText()){
+//				if(FreezeDiceButtonAvailable){
+//					ActiveDiceButtonsAreGreen=true;
+//					currentplayeractions.dicerollavailable=false;
+//					TakeWormFromPlayerButtonAvailable=false;
+//					TakeWormFromGrillButtonAvailable=false;
+//					FreezeDiceButtonAvailable=false;
+//					performGamePanelUpdate();
+//					activedicenumberselected=0;
+//					listenfordicenumber=true;
+//				}
+//				else if(currentplayeractions.dicerollavailable==false && FreezeDiceButtonAvailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
+//					JOptionPane.showMessageDialog(null, String.format("You must select a number to freeze from the active dice"));
+//				}
+//				else if(currentplayeractions.dicerollavailable && FreezeDiceButtonAvailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromPlayerButtonAvailable==false){
+//					JOptionPane.showMessageDialog(null, "You must first reroll the dice!");
+//				}
+//				else{
+//					JOptionPane.showMessageDialog(null, String.format("You can only freeze one grouping per roll"));
+//				}
+//				performGamePanelUpdate();
+//				performEndOfGameCheck();
+//			}
 			else if(event.getActionCommand()==TakeWormFromGrillButtonGreen.getText() || event.getActionCommand()==TakeWormFromGrillButtonGray.getText()){
 				if(TakeWormFromGrillButtonAvailable){
 					if(Dice.FrozenDiceList.contains(6) && Dice.dicesum>=Grill.grillworms.get(0)){
@@ -501,7 +530,8 @@ public class Gui extends JFrame {
 							currentplayeractions.dicerollavailable=true;
 							TakeWormFromPlayerButtonAvailable=false;
 							TakeWormFromGrillButtonAvailable=false;
-							FreezeDiceButtonAvailable=false;
+							listenfordicenumber=true;
+							//FreezeDiceButtonAvailable=false;
 							EndPlayerTurn=true;
 						}
 						else{
@@ -511,7 +541,8 @@ public class Gui extends JFrame {
 								currentplayeractions.dicerollavailable=true;
 								TakeWormFromPlayerButtonAvailable=false;
 								TakeWormFromGrillButtonAvailable=false;
-								FreezeDiceButtonAvailable=false;
+//								FreezeDiceButtonAvailable=false;
+								listenfordicenumber=true;
 								EndPlayerTurn=true;
 							}
 						}
@@ -523,7 +554,7 @@ public class Gui extends JFrame {
 						JOptionPane.showMessageDialog(null, String.format("You do no have any worm dice (W) frozen, so you cannot take from the grill!"));
 					}
 				}
-				else if(currentplayeractions.dicerollavailable==false && FreezeDiceButtonAvailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
+				else if(currentplayeractions.dicerollavailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
 					JOptionPane.showMessageDialog(null, String.format("You must select a number to freeze from the active dice"));
 				}
 				else{
@@ -544,7 +575,8 @@ public class Gui extends JFrame {
 									currentplayeractions.dicerollavailable=true;
 									TakeWormFromPlayerButtonAvailable=false;
 									TakeWormFromGrillButtonAvailable=false;
-									FreezeDiceButtonAvailable=false;
+									listenfordicenumber=true;
+//									FreezeDiceButtonAvailable=false;
 									EndPlayerTurn=true;
 								}
 								else {
@@ -566,7 +598,7 @@ public class Gui extends JFrame {
 						JOptionPane.showMessageDialog(null, String.format("You do no have any worm dice (W) frozen, so you cannot take from the other player!"));
 					}
 				}
-				else if(currentplayeractions.dicerollavailable==false && FreezeDiceButtonAvailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
+				else if(currentplayeractions.dicerollavailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
 					JOptionPane.showMessageDialog(null, String.format("You must select a number to freeze from the active dice"));
 				}
 				else{
@@ -663,6 +695,11 @@ public class Gui extends JFrame {
 			currentplayerworms = PlayerWormsArray.get(ActivePlayerCount);
 			currentplayeractions = ActivePlayerActionsArray.get(ActivePlayerCount);
 			EndPlayerTurn = false;
+//			listenfordicenumber=true;
+//			ActiveDiceButtonsAreGreen=true;
+//			currentplayeractions.dicerollavailable=false;
+//			TakeWormFromPlayerButtonAvailable=false;
+//			TakeWormFromGrillButtonAvailable=false;
 			performGamePanelUpdate();
 		}
 	}
@@ -696,14 +733,14 @@ public class Gui extends JFrame {
 			//RollDiceButton.setBackground(Color.GRAY);
 			OptionPaneOptions.add(RollDiceButtonGray);
 		}
-		if(FreezeDiceButtonAvailable){
-			//FreezeDiceButton.setBackground(null);
-			OptionPaneOptions.add(FreezeDiceButtonGreen);
-		}
-		else if(FreezeDiceButtonAvailable==false){
-			//FreezeDiceButton.setBackground(Color.GRAY);
-			OptionPaneOptions.add(FreezeDiceButtonGray);
-		}
+//		if(FreezeDiceButtonAvailable){
+//			//FreezeDiceButton.setBackground(null);
+//			OptionPaneOptions.add(FreezeDiceButtonGreen);
+//		}
+//		else if(FreezeDiceButtonAvailable==false){
+//			//FreezeDiceButton.setBackground(Color.GRAY);
+//			OptionPaneOptions.add(FreezeDiceButtonGray);
+//		}
 		if(TakeWormFromGrillButtonAvailable){
 			//FreezeDiceButton.setBackground(null);
 			OptionPaneOptions.add(TakeWormFromGrillButtonGreen);
@@ -735,7 +772,7 @@ public class Gui extends JFrame {
 		ActiveDiceButtons.clear();
 		ActiveDicePaneDice.removeAll();
 		for(int x=0; x<Dice.ActiveDiceList.size(); x++){
-			if(ActiveDiceButtonsAreGreen){
+			if(ActiveDiceButtonsAreGreen && Dice.FrozenDiceList.contains(Dice.ActiveDiceList.get(x))==false){
 				ActiveDiceButtons.add(new JGradientButton(Color.GREEN));
 			}
 			else{
@@ -784,14 +821,6 @@ public class Gui extends JFrame {
 			}
 		}
 	}	
-
-	private void performBunkCheck(){
-		if(FreezeDiceButtonAvailable==false){
-			if(currentplayeractions.dicerollavailable=false){
-				
-			}
-		}
-	}
 	
 	private void performEndOfGameCheck(){
 		Grill.checkEndOfGameCondition();
@@ -839,12 +868,16 @@ class createPlayerWormPanels extends JFrame{
 	PlayerWormsPaneTitle = new JPanel();
 	PlayerWormsPaneWorms = new JPanel();
 	PlayerWormsPaneMain.setLayout(new BorderLayout());
-	PlayerWormsPaneMain.setPreferredSize(new Dimension(800,125));
+	PlayerWormsPaneMain.setPreferredSize(new Dimension(800,135));
 	PlayerWormsPaneTitle.setLayout(new FlowLayout());
-	PlayerWormsPaneTitle.setPreferredSize(new Dimension(200,25));
+	PlayerWormsPaneTitle.setPreferredSize(new Dimension(200,35));
 	PlayerWormsPaneWorms.setLayout(new FlowLayout());
 	PlayerWormsPaneWorms.setPreferredSize(new Dimension(800,100));
 	PlayerWormsTextField = new JTextField("          " + playernumber + ". " + playername + "'s Worms" + "          ");
+	PlayerWormsTextField.setFont(Gui.TitleMessageFont);
+	PlayerWormsTextField.setHorizontalAlignment(JTextField.CENTER);
+	PlayerWormsTextField.setBackground(null);
+	PlayerWormsTextField.setBorder(null);
 	PlayerWormsPaneTitle.add(PlayerWormsTextField);
 	PlayerWormsPaneMain.add(PlayerWormsPaneTitle, BorderLayout.NORTH);
 	PlayerWormsPaneMain.add(PlayerWormsPaneWorms, BorderLayout.CENTER);
