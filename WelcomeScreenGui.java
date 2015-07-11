@@ -1,4 +1,4 @@
-package Version9_stable;
+package Version10_inprogress;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -40,13 +40,13 @@ public class WelcomeScreenGui extends JFrame {
 	private JGradientButton StartButton;
 	
 	public WelcomeScreenGui(){
-		super("Pickomino: Version 9");
+		super("Pickomino: Version 10");
 		
 		WelcomePaneMain = new JPanel(new BorderLayout());
         WelcomePaneMain.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         
 		WelcomeMessagePane = new JPanel(new BorderLayout());		
-		WelcomeMessageTextField = new JTextField("Welcome to Pickomino!  Please Press Start to Begin!");
+		WelcomeMessageTextField = new JTextField("Welcome to Pickomino!  Version 10");
 		WelcomeMessageTextField.setEditable(false);
 		WelcomeMessageTextField.setFont(WelcomeMessageFont);
 		WelcomeMessageTextField.setHorizontalAlignment(JTextField.CENTER);
@@ -60,13 +60,14 @@ public class WelcomeScreenGui extends JFrame {
 		StartButton = new JGradientButton("Start Button", Color.GREEN);
 		StartButtonPane.add(StartButton, BorderLayout.CENTER);
 		
-		WelcomePaneMain.add(WelcomeMessagePane, BorderLayout.NORTH);
+		WelcomePaneMain.add(WelcomeMessagePane, BorderLayout.SOUTH);
 		WelcomePaneMain.add(CoverImagePane, BorderLayout.CENTER);
-		WelcomePaneMain.add(StartButtonPane, BorderLayout.SOUTH);
+		//WelcomePaneMain.add(StartButtonPane, BorderLayout.SOUTH);
 		
 		add(WelcomePaneMain);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(600,650);
+		setUndecorated(true);
+		setSize(525,525);
 		setLocationRelativeTo(null);
 		setVisible(true);
 		

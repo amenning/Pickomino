@@ -1,4 +1,4 @@
-package Version9_stable;
+package Version10_inprogress;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -332,6 +332,7 @@ public class MainGameGui extends JFrame {
 		
 		MainPane.add(GamePane, BorderLayout.CENTER);
 		add(MainPane);
+		//setUndecorated(true);
 		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1200,600 + 125*NUMBEROFPLAYERS);
@@ -493,7 +494,7 @@ public class MainGameGui extends JFrame {
 					
 					ActiveDiceFaceRemainingCheck=0;
 					
-					for(int x=0; x<5; x++){
+					for(int x=0; x<6; x++){
 						if(Dice.doesActiveDiceListContainValue(x+1)){
 							ActiveDiceFaceRemainingCheck++;
 						}
