@@ -1,4 +1,4 @@
-package SimplifiedVersion;
+package Version3;
 import java.util.*;
 
 import javax.swing.JOptionPane;

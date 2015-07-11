@@ -1,4 +1,4 @@
-package SimplifiedVersion;
+package Version3;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -454,7 +454,7 @@ public class Gui extends JFrame {
 					performGamePanelUpdate();
 					performEndOfGameCheck();
 				}
-				else if(currentplayeractions.dicerollavailable=true && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
+				else if(currentplayeractions.dicerollavailable==true && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
 					Dice.restartAllDice();
 					FreezeDiceButtonAvailable=true;
 					TakeWormFromGrillButtonAvailable=true;
@@ -463,8 +463,8 @@ public class Gui extends JFrame {
 					performGamePanelUpdate();
 					performEndOfGameCheck();
 				}
-				else if(currentplayeractions.dicerollavailable=false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
-					JOptionPane.showConfirmDialog(null, String.format("You must select a number to freeze from the active dice"));
+				else if(currentplayeractions.dicerollavailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
+					JOptionPane.showMessageDialog(null, String.format("You must select a number to freeze from the active dice"));
 				}
 				else{
 					JOptionPane.showMessageDialog(null, String.format("You must freeze dice or take a worm!"));
@@ -480,45 +480,11 @@ public class Gui extends JFrame {
 					performGamePanelUpdate();
 					activedicenumberselected=0;
 					listenfordicenumber=true;
-//					while(activedicenumberselected==0){
-//						try {
-//							Thread.sleep(100);
-//						} catch (InterruptedException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
-//					}
-//					if(activedicenumberselected!=0){
-//						if(Dice.FrozenDiceList.contains(activedicenumberselected)==false){
-//							currentplayeractions.performFreezeDice(activedicenumberselected);
-//							FreezeDiceButtonAvailable=false;
-//							currentplayeractions.dicerollavailable=true;
-//							TakeWormFromPlayerButtonAvailable=true;
-//							TakeWormFromGrillButtonAvailable=true;
-//							ActiveDiceButtonsAreGreen=false;
-//						}
-//						else if(Dice.FrozenDiceList.contains(Integer.valueOf(inputvalue))){
-//							JOptionPane.showMessageDialog(null, "You already froze that number, pick another number!");
-//						}
-//					}
-//					performGamePanelUpdate();
-//					inputvalue=JOptionPane.showInputDialog("What grouping would you like to freeze? (Type 6 or W for worm(s))");
-//					if(inputvalue.contains("W") || inputvalue.contains("w")){
-//						inputvalue="6";
-//					}
-//					if(Dice.ActiveDiceList.contains(Integer.valueOf(inputvalue)) && Dice.FrozenDiceList.contains(Integer.valueOf(inputvalue))==false){
-//						currentplayeractions.performFreezeDice(Integer.valueOf(inputvalue));
-//						FreezeDiceButtonAvailable=false;
-//						currentplayeractions.dicerollavailable=true;
-//					}
-//					else if(Dice.FrozenDiceList.contains(Integer.valueOf(inputvalue))){
-//						JOptionPane.showMessageDialog(null, "You already froze that number, pick another number!");
-//					}
-//					else{
-//						JOptionPane.showMessageDialog(null, "Active Dice do not contain that number grouping");
-//					}
 				}
-				else if(FreezeDiceButtonAvailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromPlayerButtonAvailable==false){
+				else if(currentplayeractions.dicerollavailable==false && FreezeDiceButtonAvailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
+					JOptionPane.showMessageDialog(null, String.format("You must select a number to freeze from the active dice"));
+				}
+				else if(currentplayeractions.dicerollavailable && FreezeDiceButtonAvailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromPlayerButtonAvailable==false){
 					JOptionPane.showMessageDialog(null, "You must first reroll the dice!");
 				}
 				else{
@@ -556,6 +522,9 @@ public class Gui extends JFrame {
 					else{
 						JOptionPane.showMessageDialog(null, String.format("You do no have any worm dice (W) frozen, so you cannot take from the grill!"));
 					}
+				}
+				else if(currentplayeractions.dicerollavailable==false && FreezeDiceButtonAvailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
+					JOptionPane.showMessageDialog(null, String.format("You must select a number to freeze from the active dice"));
 				}
 				else{
 					JOptionPane.showMessageDialog(null, "You must roll the dice first!");
@@ -596,6 +565,9 @@ public class Gui extends JFrame {
 					else{
 						JOptionPane.showMessageDialog(null, String.format("You do no have any worm dice (W) frozen, so you cannot take from the other player!"));
 					}
+				}
+				else if(currentplayeractions.dicerollavailable==false && FreezeDiceButtonAvailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
+					JOptionPane.showMessageDialog(null, String.format("You must select a number to freeze from the active dice"));
 				}
 				else{
 					JOptionPane.showMessageDialog(null, "You must roll the dice first!");

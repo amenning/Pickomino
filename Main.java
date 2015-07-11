@@ -1,4 +1,4 @@
-package SimplifiedVersion;
+package Version3;
 public class Main {
 	
 	public static boolean startgame = false;

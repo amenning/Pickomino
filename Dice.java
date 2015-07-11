@@ -1,4 +1,4 @@
-package SimplifiedVersion;
+package Version3;
 import java.security.SecureRandom;
 import java.util.*;
 
