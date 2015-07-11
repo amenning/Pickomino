@@ -1,4 +1,4 @@
-package Version6;
+package Version7_stable;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -40,7 +40,7 @@ public class WelcomeScreenGui extends JFrame {
 	private JGradientButton StartButton;
 	
 	public WelcomeScreenGui(){
-		super("Pickomino");
+		super("Pickomino: Version 7");
 		
 		WelcomePaneMain = new JPanel(new BorderLayout());
         WelcomePaneMain.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));

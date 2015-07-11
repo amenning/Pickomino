@@ -1,4 +1,4 @@
-package Version6;
+package Version7_stable;
 import java.util.*;
 
 public class PlayerWorms {

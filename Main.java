@@ -1,4 +1,4 @@
-package Version6;
+package Version7_stable;
 public class Main {
 	
 	public static boolean startgame = false;
