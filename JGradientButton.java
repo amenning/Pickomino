@@ -1,4 +1,4 @@
-package Version7_stable;
+package Version8_stable;
 
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -10,7 +10,7 @@ import javax.swing.JButton;
 
 public class JGradientButton extends JButton{
     
-	public Color ButtonColor=Color.GRAY;
+	private Color ButtonColor=Color.GRAY;
 	
 	public JGradientButton(String buttontext, Color color){
         super(buttontext);
@@ -38,9 +38,5 @@ public class JGradientButton extends JButton{
         super.paintComponent(g);
     }
 
-    //public final JGradientButton newInstance(String buttontext, Color color){
-    //    ButtonColor=color;
-    //	return new JGradientButton(buttontext);
-    //}
 }
 

@@ -1,11 +1,12 @@
-package Version7_stable;
+package Version8_stable;
 import java.util.*;
+
 import javax.swing.JOptionPane;
 
 public class Grill {
 	
-	public static ArrayList<Integer> grillworms= new ArrayList<Integer>();
-	public static boolean endofgame = false;
+	private static ArrayList<Integer> grillworms= new ArrayList<Integer>();
+	private static boolean endofgame = false;
 	private final int HighestWorm = 36;
 	private final int LowestWorm = 21;
 	
@@ -15,9 +16,17 @@ public class Grill {
 		}
 	}
 
+	public static ArrayList<Integer> getGrillWorms(){
+		return grillworms;
+	}
+	
+	public static boolean getEndOfGame(){
+		return endofgame;
+	}
+	
 	public static boolean CheckIfPrizeWormIsOnGrill(int prizeworm){
 		if(grillworms.contains(prizeworm)){
-			if(Dice.dicesum>=prizeworm){
+			if(Dice.getDiceSum()>=prizeworm){
 			RemovePrizeWormFromGrill(prizeworm);
 			}
 			return true;

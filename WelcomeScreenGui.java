@@ -1,4 +1,4 @@
-package Version7_stable;
+package Version8_stable;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -34,13 +34,13 @@ public class WelcomeScreenGui extends JFrame {
 	private JPanel StartButtonPane;
 	
 	private JTextField WelcomeMessageTextField;
+	private Font WelcomeMessageFont = new Font("SansSerif", Font.BOLD, 20);
 	
-	//private JButton StartButton;
 	private JButton CoverImageButton;
 	private JGradientButton StartButton;
 	
 	public WelcomeScreenGui(){
-		super("Pickomino: Version 7");
+		super("Pickomino: Version 8");
 		
 		WelcomePaneMain = new JPanel(new BorderLayout());
         WelcomePaneMain.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -48,7 +48,6 @@ public class WelcomeScreenGui extends JFrame {
 		WelcomeMessagePane = new JPanel(new BorderLayout());		
 		WelcomeMessageTextField = new JTextField("Welcome to Pickomino!  Please Press Start to Begin!");
 		WelcomeMessageTextField.setEditable(false);
-		Font WelcomeMessageFont = new Font("SansSerif", Font.BOLD, 20);
 		WelcomeMessageTextField.setFont(WelcomeMessageFont);
 		WelcomeMessageTextField.setHorizontalAlignment(JTextField.CENTER);
 		WelcomeMessagePane.add(WelcomeMessageTextField, BorderLayout.CENTER);
@@ -58,8 +57,6 @@ public class WelcomeScreenGui extends JFrame {
 		CoverImagePane.add(CoverImageButton, BorderLayout.CENTER);
 		
 		StartButtonPane = new JPanel(new BorderLayout());
-		
-		//StartButton = JGradientButton.newInstance("Start Button", Color.GREEN);
 		StartButton = new JGradientButton("Start Button", Color.GREEN);
 		StartButtonPane.add(StartButton, BorderLayout.CENTER);
 		
@@ -68,23 +65,20 @@ public class WelcomeScreenGui extends JFrame {
 		WelcomePaneMain.add(StartButtonPane, BorderLayout.SOUTH);
 		
 		add(WelcomePaneMain);
-		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600,650);
 		setLocationRelativeTo(null);
 		setVisible(true);
 		
-		HandlerClass handler = new HandlerClass();
-		StartButton.addActionListener(handler);
+		StartButtonHandlerClass startbuttonhandler = new StartButtonHandlerClass();
+		StartButton.addActionListener(startbuttonhandler);
 		
 	}
 	
-	private class HandlerClass implements ActionListener {
+	private class StartButtonHandlerClass implements ActionListener {
 		public void actionPerformed(ActionEvent event){
 			if(event.getActionCommand()==StartButton.getText()){
-				//JOptionPane.showMessageDialog(null, "Start Button Pushed");
 				Main.startgame=true;
-				dispose();
 			}
 		}
 	}	

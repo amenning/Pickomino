@@ -1,29 +1,53 @@
-package Version7_stable;
+package Version8_stable;
 import java.security.SecureRandom;
 import java.util.*;
 
 import javax.swing.JOptionPane;
 
 public class Dice {
+		
+	private static ArrayList<Integer> ActiveDiceList = new ArrayList<Integer>();
+	private static ArrayList<Integer> FrozenDiceList = new ArrayList<Integer>();
 	
-	public static final int MAXDICENUMBER = 8;
-	public static ArrayList<Integer> ActiveDiceList = new ArrayList<Integer>();
-	public static ArrayList<Integer> FrozenDiceList = new ArrayList<Integer>();
-	//public static Random rand = new Random();
 	private static SecureRandom rand = new SecureRandom(); 
-	  //rand.setSeed(seed); 
-	  //int randInt = rand.nextInt(6);
-	public static int activedicesize;
-	public static int dicesum;
-	public static int lastchancedicesum;
-	public static boolean bunk = false;
+	
+	private static final int MAXDICENUMBER = 8;
+	private static int activedicesize;
+	private static int dicesum;
+	private static int lastchancedicesum;
+	
+	private static boolean bunk = false;
+	
+	public static ArrayList<Integer> getActiveDiceList(){
+		return ActiveDiceList;
+	}
+	
+	public static ArrayList<Integer> getFrozenDiceList(){
+		return FrozenDiceList;
+	}
+	
+	public static void setBunk(boolean setboolean){
+		bunk=setboolean;
+	}
+	
+	public static boolean getBunk(){
+		return bunk;
+	}
+	
+	public static int getDiceSum(){
+		return dicesum;
+	}
+	
+	public static int getLastChanceDiceSum(){
+		return lastchancedicesum;
+	}
 	
 	public Dice() {
 		ActiveDiceList.clear();
 		FrozenDiceList.clear();
 		dicesum = 0;
 		for(int x=0; x<MAXDICENUMBER; x++){
-		ActiveDiceList.add(x, rand.nextInt(6)+1);
+			ActiveDiceList.add(x, rand.nextInt(6)+1);
 		}
 		sumDice();
 	}
@@ -53,13 +77,9 @@ public class Dice {
 	public static void checkforbunkdice(){
 		bunk=true;
 		for(int x=0; x<ActiveDiceList.size(); x++){
-			if(FrozenDiceList.contains(ActiveDiceList.get(x))){
-				//ActivePlayerActions.optionsopen = false;
-			}
-			else{
+			if(FrozenDiceList.contains(ActiveDiceList.get(x))==false){
 				bunk=false;
-			}
-		
+			}		
 		}
 	}
 
@@ -83,38 +103,8 @@ public class Dice {
 		}
 	}
 
-//	public static void moveDiceToActive(int numbergrouping){
-//		ArrayList<Integer> TransferDiceList = new ArrayList<Integer>();
-//		if(FrozenDiceList.contains(numbergrouping)){
-//			for(int x=0; x<FrozenDiceList.size(); x++){
-//				if(numbergrouping==FrozenDiceList.get(x)){
-//					ActiveDiceList.add(FrozenDiceList.get(x));		
-//				}
-//				else{
-//					TransferDiceList.add(FrozenDiceList.get(x));
-//				} 
-//			}
-//			FrozenDiceList.clear();
-//			FrozenDiceList.addAll(0, TransferDiceList);
-//			TransferDiceList.clear();
-//			printDiceList(ActiveDiceList);
-//			printDiceList(FrozenDiceList);
-//		}
-//		else{
-//			System.out.println("Frozen dice do not contain that number grouping");
-//		}
-//	}
-	
 	public static void sumDice(){ 
 		dicesum=0;
-//		for(int x=0; x<ActiveDiceList.size(); x++){
-//			if(ActiveDiceList.get(x)==6){
-//				dicesum += 5;
-//			}
-//			else{
-//				dicesum += ActiveDiceList.get(x);
-//			}
-//		}
 		for(int x=0; x<FrozenDiceList.size(); x++){
 			if(FrozenDiceList.get(x)==6){
 				dicesum += 5;
@@ -146,16 +136,7 @@ public class Dice {
 					lastchancedicesum += ActiveDiceList.get(y);
 				}
 			}
-		}
+		}	
+	}
 		
-	}
-	
-	public static void printDiceList(ArrayList<Integer> q){
-		if(q.isEmpty())
-			System.out.println("This dice list has no values");
-		else
-			System.out.println("This is the dice list values");
-			System.out.printf("%s Bottom\n", q);
-	}
-	
 }
