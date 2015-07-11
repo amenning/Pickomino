@@ -126,9 +126,6 @@ public class MainGameGui extends JFrame {
 		
 		for(int x=0; x<NUMBEROFPLAYERS; x++){
 			PlayerWormsArray.add(new PlayerWorms(JOptionPane.showInputDialog(null, String.format("What is Player %s's name?", x+1))));
-			if(PlayerWormsArray.get(x).getPlayerName().equals("Duc") || PlayerWormsArray.get(x).getPlayerName().equals("Huy") || PlayerWormsArray.get(x).getPlayerName().equals("duc") || PlayerWormsArray.get(x).getPlayerName().equals("huy") || PlayerWormsArray.get(x).getPlayerName().equals("DHN") || PlayerWormsArray.get(x).getPlayerName().equals("dhn")){
-				JOptionPane.showMessageDialog(null, "Oh, It's my love ^_^   <3 <3 <3");
-			}
 			ActivePlayerActionsArray.add(new ActivePlayerActions(PlayerWormsArray.get(x)));
 			ScoreArray.add(0);
 		}		
