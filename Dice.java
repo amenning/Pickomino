@@ -1,4 +1,4 @@
-package Version8_stable;
+package Version9_stable;
 import java.security.SecureRandom;
 import java.util.*;
 
@@ -18,12 +18,38 @@ public class Dice {
 	
 	private static boolean bunk = false;
 	
-	public static ArrayList<Integer> getActiveDiceList(){
-		return ActiveDiceList;
+	public static int getActiveDiceListValue(int activediceindex){
+		return ActiveDiceList.get(activediceindex);
 	}
 	
-	public static ArrayList<Integer> getFrozenDiceList(){
-		return FrozenDiceList;
+	public static int getActiveDiceListSize(){
+		return ActiveDiceList.size();
+	}
+	
+	public static boolean doesActiveDiceListContainValue(int activedicevaluecheck){
+		if(ActiveDiceList.contains(activedicevaluecheck)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	public static int getFrozenDiceListValue(int frozendiceindex){
+		return FrozenDiceList.get(frozendiceindex);
+	}
+	
+	public static int getFrozenDiceListSize(){
+		return FrozenDiceList.size();
+	}
+	
+	public static boolean doesFrozenDiceListContainValue(int frozendicevaluecheck){
+		if(FrozenDiceList.contains(frozendicevaluecheck)){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
 	public static void setBunk(boolean setboolean){

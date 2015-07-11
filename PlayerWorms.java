@@ -1,4 +1,4 @@
-package Version8_stable;
+package Version9_stable;
 import java.util.*;
 
 public class PlayerWorms {
@@ -16,8 +16,12 @@ public class PlayerWorms {
 		return playername;
 	}
 	
-	public ArrayList<Integer> getPlayerWormsArrayList(){
-		return playerwormsarraylist;
+	public int getPlayerWormsArrayListSize(){
+		return playerwormsarraylist.size();
+	}
+	
+	public int getPlayerWormsArrayListWormValue(int wormindex){
+		return playerwormsarraylist.get(wormindex);
 	}
 
 	public void addPrizeWormToPlayer(int prizeworm){
@@ -40,6 +44,12 @@ public class PlayerWorms {
 		}
 		
 		Dice.setBunk(false);
+	}
+	
+	public void RemoveStolenWormFromPlayer(){
+		if(playerwormsarraylist.size()>0){
+			playerwormsarraylist.remove(0);
+		}
 	}
 	
 }

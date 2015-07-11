@@ -1,4 +1,4 @@
-package Version8_stable;
+package Version9_stable;
 import java.util.*;
 
 import javax.swing.JOptionPane;
@@ -16,9 +16,23 @@ public class Grill {
 		}
 	}
 
-	public static ArrayList<Integer> getGrillWorms(){
-		return grillworms;
+	public static int getGrillWormsSize(){
+		return grillworms.size();
 	}
+	
+	public static int getGrillWormsValue(int grillwormindex){
+		return grillworms.get(grillwormindex);
+	}
+	
+	public static boolean doesGrillWormsContainValue(int grillwormvaluecheck){
+		if (grillworms.contains(grillwormvaluecheck)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
 	
 	public static boolean getEndOfGame(){
 		return endofgame;

@@ -1,4 +1,4 @@
-package Version8_stable;
+package Version9_stable;
 import java.util.*;
 
 import javax.swing.JOptionPane;
@@ -8,40 +8,39 @@ public class ActivePlayerActions {
 	private PlayerWorms currentplayer;
 	
 	private static boolean dicerollavailable = true;
-	private boolean isOnGrill = false;
-	
-	public void setDiceRollAvailable(boolean setboolean){
-		dicerollavailable=setboolean;
-	}
-	
-	public boolean getDiceRollAvailable(){
-		return dicerollavailable;
-	}
 	
 	public ActivePlayerActions(PlayerWorms player) {
 		dicerollavailable=false;
 		currentplayer=player;
 	}
 	
+	public void setDiceRollAvailable(boolean setdicerollavailableboolean){
+		dicerollavailable=setdicerollavailableboolean;
+	}
+	
+	public boolean getDiceRollAvailable(){
+		return dicerollavailable;
+	}
+		
 	public void performRollDice(){	
 		Dice.rollDice();
 		dicerollavailable=false;
 	}
 
 	public void performPlayerBunk(){
-		if(currentplayer.getPlayerWormsArrayList().size()>0){
-			Grill.AddWormBackToGrill(currentplayer.getPlayerWormsArrayList().get(0));
+		if(currentplayer.getPlayerWormsArrayListSize()>0){
+			Grill.AddWormBackToGrill(currentplayer.getPlayerWormsArrayListWormValue(0));
 			currentplayer.RemoveBunkWormFromPlayer();
 			Dice.restartAllDice();
 			dicerollavailable=false;
 			Dice.setBunk(false);
-			Gui.setEndPlayerTurn(true);
+			MainGameGui.setEndPlayerTurn(true);
 		}
 		else{
 			Dice.restartAllDice();
 			dicerollavailable=false;
 			Dice.setBunk(false);
-			Gui.setEndPlayerTurn(true);
+			MainGameGui.setEndPlayerTurn(true);
 		}
 
 	}

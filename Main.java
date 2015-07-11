@@ -1,4 +1,4 @@
-package Version8_stable;
+package Version9_stable;
 public class Main {
 	
 	public static boolean startgame = false;
@@ -18,7 +18,10 @@ public class Main {
 		
 		welcomego.dispose();
 		
-		Gui gamego = new Gui();
+		Grill MainGrill = new Grill();	
+		Dice dice = new Dice();
+		
+		MainGameGui gamego = new MainGameGui();
 			
 	}
 }
