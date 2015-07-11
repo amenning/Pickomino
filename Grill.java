@@ -1,4 +1,4 @@
-package Version5;
+package Version6;
 import java.util.*;
 import javax.swing.JOptionPane;
 
@@ -29,7 +29,7 @@ public class Grill {
 	}
 	
 	public static void RemovePrizeWormFromGrill(int prizeworm){
-			grillworms.remove(grillworms.indexOf(prizeworm));		
+		grillworms.remove(grillworms.indexOf(prizeworm));
 	}
 
 	public static void AddWormBackToGrill(int lostworm){

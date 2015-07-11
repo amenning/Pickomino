@@ -1,4 +1,4 @@
-package Version5;
+package Version6;
 import java.security.SecureRandom;
 import java.util.*;
 
@@ -127,6 +127,7 @@ public class Dice {
 
 	public static void sumDiceLastChance(){ 
 		lastchancedicesum=0;
+		
 		for(int x=0; x<FrozenDiceList.size(); x++){
 			if(FrozenDiceList.get(x)==6){
 				lastchancedicesum += 5;
@@ -135,24 +136,26 @@ public class Dice {
 				lastchancedicesum += FrozenDiceList.get(x);
 			}
 		}
-		for(int x=0; x<ActiveDiceList.size(); x++){
-			if(FrozenDiceList.contains(ActiveDiceList.get(x))==false){	
-				if(ActiveDiceList.get(x)==6){
+		
+		for(int y=0; y<ActiveDiceList.size(); y++){
+			if(FrozenDiceList.contains(ActiveDiceList.get(y))==false){	
+				if(ActiveDiceList.get(y)==6){
 					lastchancedicesum += 5;
 				}
 				else{
-					lastchancedicesum += ActiveDiceList.get(x);
+					lastchancedicesum += ActiveDiceList.get(y);
 				}
 			}
 		}
+		
 	}
 	
-//	public static void printDiceList(ArrayList<Integer> q){
-//		if(q.isEmpty())
-//			System.out.println("This dice list has no values");
-//		else
-//			System.out.println("This is the dice list values");
-//			System.out.printf("%s Bottom\n", q);
-//	}
+	public static void printDiceList(ArrayList<Integer> q){
+		if(q.isEmpty())
+			System.out.println("This dice list has no values");
+		else
+			System.out.println("This is the dice list values");
+			System.out.printf("%s Bottom\n", q);
+	}
 	
 }

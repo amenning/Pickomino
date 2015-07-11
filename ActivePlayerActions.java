@@ -1,4 +1,4 @@
-package Version5;
+package Version6;
 import java.util.*;
 
 import javax.swing.JOptionPane;
@@ -118,8 +118,8 @@ public class ActivePlayerActions {
 			currentplayer.addPrizeWormToPlayer(prizeworm);
 			playeroption = 0;
 			dicerollavailable = false;
-			ForbiddenHoldNumbers.clear();
-			Dice.restartAllDice();
+//			ForbiddenHoldNumbers.clear();
+//			Dice.restartAllDice();
 			optionsopen=false;
 			//Gui.FreezeDiceButtonAvailable=true;
 			

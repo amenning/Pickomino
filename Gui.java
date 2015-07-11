@@ -1,4 +1,4 @@
-package Version5;
+package Version6;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -56,8 +56,12 @@ public class Gui extends JFrame {
 	private static boolean GrillWormButtonsAreGreen=true;
 	private int activedicenumberselected=0;
 	private int activegrillwormnumberselected=0;
+	private int activeplayerwormnumberselected=0;
 	private static boolean listenfordicenumber=true;
 	private static boolean listenforgrillwormnumber=false;
+	private static boolean listenforplayerwormnumber=false;
+	private int AttackedPlayer;
+	private static boolean lastchancewormsteal=false;
 	
 	ArrayList<JButton> GrillWormButtons = new ArrayList<JButton>();
 	ArrayList<JButton> ActiveDiceButtons = new ArrayList<JButton>();
@@ -100,11 +104,11 @@ public class Gui extends JFrame {
 	//private JButton FreezeDiceButtonGray;
 	//private JButton FreezeDiceButtonGreen;
 	//private JButton TakeWormFromGrillButton;
-	private JButton TakeWormFromGrillButtonGreen;
-	private JButton TakeWormFromGrillButtonGray;
+	//private JButton TakeWormFromGrillButtonGreen;
+	//private JButton TakeWormFromGrillButtonGray;
 	//private JButton TakeWormFromPlayerButton;
-	private JButton TakeWormFromPlayerButtonGreen;
-	private JButton TakeWormFromPlayerButtonGray;
+	//private JButton TakeWormFromPlayerButtonGreen;
+	//private JButton TakeWormFromPlayerButtonGray;
 	
 	//private JTextField GameStatusTitlePaneTextField;
 	//private JTextField GameStatusOutputPaneTextField;
@@ -321,18 +325,18 @@ public class Gui extends JFrame {
 		//FreezeDiceButtonGreen = new JGradientButton("Freeze Dice Grouping", Color.GREEN);
 		//FreezeDiceButtonGray = new JGradientButton("Freeze Dice Grouping", Color.GRAY);
 		//TakeWormFromGrillButton = new JButton("Take Worm From Grill");
-		TakeWormFromGrillButtonGreen = new JGradientButton("Take Worm From Grill", Color.GREEN);
-		TakeWormFromGrillButtonGray = new JGradientButton("Take Worm From Grill", Color.GRAY);
+		//TakeWormFromGrillButtonGreen = new JGradientButton("Take Worm From Grill", Color.GREEN);
+		//TakeWormFromGrillButtonGray = new JGradientButton("Take Worm From Grill", Color.GRAY);
 		//TakeWormFromPlayerButton = new JButton("Take Worm From Player");
-		TakeWormFromPlayerButtonGreen = new JGradientButton("Take Worm From Player", Color.GREEN);
-		TakeWormFromPlayerButtonGray = new JGradientButton("Take Worm From Player", Color.GRAY);
+		//TakeWormFromPlayerButtonGreen = new JGradientButton("Take Worm From Player", Color.GREEN);
+		//TakeWormFromPlayerButtonGray = new JGradientButton("Take Worm From Player", Color.GRAY);
 		//OptionPaneOptions.add(RollDiceButton);
 		OptionPaneOptions.add(RollDiceButtonGray);
 		//OptionPaneOptions.add(FreezeDiceButtonGreen);
-		OptionPaneOptions.add(TakeWormFromGrillButtonGreen);
-		if(NUMBEROFPLAYERS>1){
-			OptionPaneOptions.add(TakeWormFromPlayerButtonGreen);
-		}
+		//OptionPaneOptions.add(TakeWormFromGrillButtonGreen);
+		//if(NUMBEROFPLAYERS>1){
+		//	OptionPaneOptions.add(TakeWormFromPlayerButtonGreen);
+		//}
 		OptionPaneMain.add(OptionPaneTitle, BorderLayout.NORTH);
 		OptionPaneMain.add(OptionPaneOptions, BorderLayout.CENTER);
 		
@@ -425,18 +429,18 @@ public class Gui extends JFrame {
 		//add(custom);
 		
 		handler = new HandlerClass();
-		for(int x=0; x<Grill.grillworms.size(); x++){
-			GrillWormButtons.get(x).addActionListener(new GrillWormsHandlerClass(Grill.grillworms.get(x)));
-		}
+		//for(int x=0; x<Grill.grillworms.size(); x++){
+		//	GrillWormButtons.get(x).addActionListener(new GrillWormsHandlerClass(Grill.grillworms.get(x)));
+		//}
 		//RollDiceButton.addActionListener(handler);
 		RollDiceButtonGreen.addActionListener(handler);
 		RollDiceButtonGray.addActionListener(handler);
 		//FreezeDiceButtonGreen.addActionListener(handler);
 		//FreezeDiceButtonGray.addActionListener(handler);
-		TakeWormFromGrillButtonGreen.addActionListener(handler);
-		TakeWormFromGrillButtonGray.addActionListener(handler);
-		TakeWormFromPlayerButtonGreen.addActionListener(handler);
-		TakeWormFromPlayerButtonGray.addActionListener(handler);
+		//TakeWormFromGrillButtonGreen.addActionListener(handler);
+		//TakeWormFromGrillButtonGray.addActionListener(handler);
+		//TakeWormFromPlayerButtonGreen.addActionListener(handler);
+		//TakeWormFromPlayerButtonGray.addActionListener(handler);
 			
 	}
 	
@@ -461,7 +465,9 @@ public class Gui extends JFrame {
 				if(Dice.FrozenDiceList.contains(activedicenumberselected)==false){
 					currentplayeractions.performFreezeDice(activedicenumberselected);
 					//FreezeDiceButtonAvailable=false;
-					currentplayeractions.dicerollavailable=true;
+					if(Dice.ActiveDiceList.size()>0){
+						currentplayeractions.dicerollavailable=true;
+					}
 					TakeWormFromPlayerButtonAvailable=true;
 					TakeWormFromGrillButtonAvailable=true;
 					ActiveDiceButtonsAreGreen=false;
@@ -494,7 +500,7 @@ public class GrillWormsHandlerClass implements ActionListener {
 			}
 			
 			if(activegrillwormnumberselected!=0){
-				if(Dice.dicesum>=activegrillwormnumberselected){
+				if(Grill.grillworms.contains(Dice.dicesum) && activegrillwormnumberselected==Dice.dicesum){
 					currentplayeractions.performTakeWormFromGrill(activegrillwormnumberselected);
 					Grill.RemovePrizeWormFromGrill(activegrillwormnumberselected);
 					currentplayeractions.dicerollavailable=true;
@@ -502,8 +508,26 @@ public class GrillWormsHandlerClass implements ActionListener {
 					listenforgrillwormnumber=false;
 					TakeWormFromPlayerButtonAvailable=false;
 					TakeWormFromGrillButtonAvailable=false;
-					listenfordicenumber=true;
+					listenfordicenumber=false;
+					listenforgrillwormnumber=false;
+					listenforplayerwormnumber=false;
 					EndPlayerTurn=true;
+				}
+				else if(Grill.grillworms.contains(Dice.dicesum)==false && Dice.dicesum>=activegrillwormnumberselected){
+					currentplayeractions.performTakeWormFromGrill(activegrillwormnumberselected);
+					Grill.RemovePrizeWormFromGrill(activegrillwormnumberselected);
+					currentplayeractions.dicerollavailable=true;
+					GrillWormButtonsAreGreen=false;
+					listenforgrillwormnumber=false;
+					TakeWormFromPlayerButtonAvailable=false;
+					TakeWormFromGrillButtonAvailable=false;
+					listenfordicenumber=false;
+					listenforgrillwormnumber=false;
+					listenforplayerwormnumber=false;
+					EndPlayerTurn=true;
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "You cannot select that worm!");
 				}
 			}
 			performGamePanelUpdate();		
@@ -511,6 +535,46 @@ public class GrillWormsHandlerClass implements ActionListener {
 		}
 		
 	}
+
+public class PlayerWormsHandlerClass implements ActionListener {
+	
+	private int setwormnumber;
+	private int setattackedplayernumber;
+	
+	public PlayerWormsHandlerClass(int playernumber, int wormnumber){
+		setwormnumber=wormnumber;
+		setattackedplayernumber=playernumber;
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		activedicenumberselected=0;
+		AttackedPlayer=99;
+		if(listenforplayerwormnumber){
+			activeplayerwormnumberselected=setwormnumber;
+			AttackedPlayer=setattackedplayernumber;
+		}
+		
+		if(activeplayerwormnumberselected!=0 && AttackedPlayer!=99){
+			if(Dice.dicesum==PlayerWormsArray.get(AttackedPlayer).playerwormsarraylist.get(0)){
+				currentplayeractions.performTakeWormFromPlayer(PlayerWormsArray.get(AttackedPlayer).playerwormsarraylist.get(0));
+				PlayerWormsArray.get(AttackedPlayer).playerwormsarraylist.remove(0);
+				currentplayeractions.dicerollavailable=true;
+				TakeWormFromPlayerButtonAvailable=false;
+				TakeWormFromGrillButtonAvailable=false;
+				listenfordicenumber=false;
+				listenforplayerwormnumber=false;
+				listenforgrillwormnumber=false;
+				EndPlayerTurn=true;
+			}
+		}
+		performGamePanelUpdate();		
+		//JOptionPane.showMessageDialog(null, "Dice number " + setdicenumber + " was pressed");
+	}
+	
+}
+
 	
 	public class HandlerClass implements ActionListener {
 		public void actionPerformed(ActionEvent event){
@@ -521,38 +585,51 @@ public class GrillWormsHandlerClass implements ActionListener {
 					performGamePanelUpdate();
 					activedicenumberselected=0;
 					listenfordicenumber=true;
+					listenforgrillwormnumber=true;
+					listenforplayerwormnumber=true;
 					performGamePanelUpdate();
+					
 					if(Dice.bunk==true){
 						JOptionPane.showMessageDialog(null, "You have bunked!");
 						currentplayeractions.performPlayerBunk();
 					}
+					
 					ActiveDiceFaceRemainingCheck=0;
-					for(int x=0; x<6; x++){
+					
+					for(int x=0; x<5; x++){
 						if(Dice.ActiveDiceList.contains(x+1)){
 							ActiveDiceFaceRemainingCheck++;
 						}
 					}
+					
 					if(ActiveDiceFaceRemainingCheck==1){
 						Dice.sumDiceLastChance();
-						boolean lastchancewormsteal=false;
-						if(NUMBEROFPLAYERS>1){	
-							for(int x=0; x<NUMBEROFPLAYERS; x++){
-								if(ActivePlayerCount!=x){
-									if(PlayerWormsArray.get(x).playerwormsarraylist.get(0)==Dice.lastchancedicesum && (Dice.ActiveDiceList.contains(6) || Dice.ActiveDiceList.contains(6))){
+					}
+					
+					lastchancewormsteal=false;
+					if(NUMBEROFPLAYERS>1){	
+						for(int z=0; z<NUMBEROFPLAYERS; z++){
+							if(ActivePlayerCount!=z && PlayerWormsArray.get(z).playerwormsarraylist.size()>0){
+								if(PlayerWormsArray.get(z).playerwormsarraylist.get(0)==Dice.lastchancedicesum){
+									if(Dice.ActiveDiceList.contains(6) || Dice.FrozenDiceList.contains(6)){
 										lastchancewormsteal=true;
 									}
 								}
 							}
 						}
 					}
-					if(ActiveDiceFaceRemainingCheck==1 && Dice.lastchancedicesum<Grill.grillworms.get(0)){
-						JOptionPane.showMessageDialog(null, "You cannot roll anymore and you cannot take a worm; you have bunked!");
-						currentplayeractions.performPlayerBunk();
+					
+					if(lastchancewormsteal==false){
+						if(ActiveDiceFaceRemainingCheck==1 && Dice.lastchancedicesum<Grill.grillworms.get(0)){
+							JOptionPane.showMessageDialog(null, "You cannot roll anymore and you cannot take a worm; you have bunked!");
+							currentplayeractions.performPlayerBunk();
+						}
+						else if(ActiveDiceFaceRemainingCheck==1 && Dice.ActiveDiceList.contains(6)==false && Dice.FrozenDiceList.contains(6)==false){
+							JOptionPane.showMessageDialog(null, "You cannot roll anymore and you cannot take a worm; you have bunked!");
+							currentplayeractions.performPlayerBunk();
+						}
 					}
-					else if(ActiveDiceFaceRemainingCheck==1 && Dice.ActiveDiceList.contains(6)==false && Dice.FrozenDiceList.contains(6)==false){
-						JOptionPane.showMessageDialog(null, "You cannot roll anymore and you cannot take a worm; you have bunked!");
-						currentplayeractions.performPlayerBunk();
-					}
+					
 					ActiveDiceButtonsAreGreen=true;
 					currentplayeractions.dicerollavailable=false;
 					TakeWormFromPlayerButtonAvailable=false;
@@ -561,17 +638,18 @@ public class GrillWormsHandlerClass implements ActionListener {
 //					listenfordicenumber=true;
 //					ActiveDiceButtonsAreGreen=true;
 					performGamePanelUpdate();
-					performEndOfGameCheck();
+					//performEndOfGameCheck();
 				}
 				else if(currentplayeractions.dicerollavailable==true && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
 					Dice.restartAllDice();
+					listenfordicenumber=true;
 //					FreezeDiceButtonAvailable=true;
 					ActiveDiceButtonsAreGreen=true;
 					TakeWormFromGrillButtonAvailable=false;
 					TakeWormFromPlayerButtonAvailable=false;
 					currentplayeractions.dicerollavailable=false;
 					performGamePanelUpdate();
-					performEndOfGameCheck();
+					//performEndOfGameCheck();
 				}
 				else if(currentplayeractions.dicerollavailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
 					JOptionPane.showMessageDialog(null, String.format("You must select a number to freeze from the active dice"));
@@ -603,91 +681,91 @@ public class GrillWormsHandlerClass implements ActionListener {
 //				performGamePanelUpdate();
 //				performEndOfGameCheck();
 //			}
-			else if(event.getActionCommand()==TakeWormFromGrillButtonGreen.getText() || event.getActionCommand()==TakeWormFromGrillButtonGray.getText()){
-				if(TakeWormFromGrillButtonAvailable){
-					if(Dice.FrozenDiceList.contains(6) && Dice.dicesum>=Grill.grillworms.get(0)){
-						if(Grill.CheckIfPrizeWormIsOnGrill(Dice.dicesum)){
-							currentplayeractions.performTakeWormFromGrill(Dice.dicesum);
-							currentplayeractions.dicerollavailable=true;
-							GrillWormButtonsAreGreen=false;
-							TakeWormFromPlayerButtonAvailable=false;
-							TakeWormFromGrillButtonAvailable=false;
-							listenfordicenumber=true;
-							//FreezeDiceButtonAvailable=false;
-							EndPlayerTurn=true;
-						}
-						else{
-								GrillWormButtonsAreGreen=true;
-								listenforgrillwormnumber=true;
-								currentplayeractions.dicerollavailable=false;
-								TakeWormFromPlayerButtonAvailable=false;
-								TakeWormFromGrillButtonAvailable=false;
-								listenfordicenumber=false;
-						}
-					}
-					else if(Dice.FrozenDiceList.contains(6) && Dice.dicesum<Grill.grillworms.get(0)){
-						JOptionPane.showMessageDialog(null, String.format("You do no have enough to take any worms from the grill!"));
-					}
-					else{
-						JOptionPane.showMessageDialog(null, String.format("You do no have any worm dice (W) frozen, so you cannot take from the grill!"));
-					}
-				}
-				else if(currentplayeractions.dicerollavailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
-					JOptionPane.showMessageDialog(null, String.format("You must select a number to freeze from the active dice"));
-				}
-				else{
-					JOptionPane.showMessageDialog(null, "You must roll the dice first!");
-				}
-				performGamePanelUpdate();
-				performEndOfGameCheck();
-			}
-			else if(event.getActionCommand()==TakeWormFromPlayerButtonGreen.getText() || event.getActionCommand()==TakeWormFromPlayerButtonGray.getText()){
-				if(TakeWormFromPlayerButtonAvailable){
-					if(Dice.FrozenDiceList.contains(6)){
-						int AttackedPlayer=Integer.valueOf(JOptionPane.showInputDialog("Which player would you like to take a worm from? (Enter their Number)"));
-						if(1<=AttackedPlayer && AttackedPlayer<=NUMBEROFPLAYERS){
-							if(PlayerWormsArray.get(AttackedPlayer-1).playerwormsarraylist.size()>0 && ActivePlayerCount!=AttackedPlayer-1){
-								if(Dice.dicesum==PlayerWormsArray.get(AttackedPlayer-1).playerwormsarraylist.get(0)){
-									currentplayeractions.performTakeWormFromPlayer(PlayerWormsArray.get(AttackedPlayer-1).playerwormsarraylist.get(0));
-									PlayerWormsArray.get(AttackedPlayer-1).playerwormsarraylist.remove(0);
-									currentplayeractions.dicerollavailable=true;
-									TakeWormFromPlayerButtonAvailable=false;
-									TakeWormFromGrillButtonAvailable=false;
-									listenfordicenumber=true;
-//									FreezeDiceButtonAvailable=false;
-									EndPlayerTurn=true;
-								}
-								else {
-									JOptionPane.showMessageDialog(null, String.format("You dice sum does not match the other player's top worm!"));
-								}
-							}
-							else if(ActivePlayerCount==AttackedPlayer-1){
-								JOptionPane.showMessageDialog(null, String.format("You cannot steal from yourself!"));
-							}
-							else{
-								JOptionPane.showMessageDialog(null, String.format("That player has no worms to take!"));
-							}
-						}
-						else{
-							JOptionPane.showMessageDialog(null, String.format("Please enter a valid number!"));
-						}
-					}
-					else{
-						JOptionPane.showMessageDialog(null, String.format("You do no have any worm dice (W) frozen, so you cannot take from the other player!"));
-					}
-				}
-				else if(currentplayeractions.dicerollavailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
-					JOptionPane.showMessageDialog(null, String.format("You must select a number to freeze from the active dice"));
-				}
-				else{
-					JOptionPane.showMessageDialog(null, "You must roll the dice first!");
-				}
-				performGamePanelUpdate();
-				performEndOfGameCheck();
-			}
-			else{
-				JOptionPane.showMessageDialog(null, String.format("%s", event.getActionCommand()));
-			}
+//			else if(event.getActionCommand()==TakeWormFromGrillButtonGreen.getText() || event.getActionCommand()==TakeWormFromGrillButtonGray.getText()){
+//				if(TakeWormFromGrillButtonAvailable){
+//					if(Dice.FrozenDiceList.contains(6) && Dice.dicesum>=Grill.grillworms.get(0)){
+//						if(Grill.CheckIfPrizeWormIsOnGrill(Dice.dicesum)){
+//							currentplayeractions.performTakeWormFromGrill(Dice.dicesum);
+//							currentplayeractions.dicerollavailable=true;
+//							GrillWormButtonsAreGreen=false;
+//							TakeWormFromPlayerButtonAvailable=false;
+//							TakeWormFromGrillButtonAvailable=false;
+//							listenfordicenumber=true;
+//							//FreezeDiceButtonAvailable=false;
+//							EndPlayerTurn=true;
+//						}
+//						else{
+//								GrillWormButtonsAreGreen=true;
+//								listenforgrillwormnumber=true;
+//								currentplayeractions.dicerollavailable=false;
+//								TakeWormFromPlayerButtonAvailable=false;
+//								TakeWormFromGrillButtonAvailable=false;
+//								listenfordicenumber=false;
+//						}
+//					}
+//					else if(Dice.FrozenDiceList.contains(6) && Dice.dicesum<Grill.grillworms.get(0)){
+//						JOptionPane.showMessageDialog(null, String.format("You do no have enough to take any worms from the grill!"));
+//					}
+//					else{
+//						JOptionPane.showMessageDialog(null, String.format("You do no have any worm dice (W) frozen, so you cannot take from the grill!"));
+//					}
+//				}
+//				else if(currentplayeractions.dicerollavailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
+//					JOptionPane.showMessageDialog(null, String.format("You must select a number to freeze from the active dice"));
+//				}
+//				else{
+//					JOptionPane.showMessageDialog(null, "You must roll the dice first!");
+//				}
+//				performGamePanelUpdate();
+//				performEndOfGameCheck();
+//			}
+//			else if(event.getActionCommand()==TakeWormFromPlayerButtonGreen.getText() || event.getActionCommand()==TakeWormFromPlayerButtonGray.getText()){
+//				if(TakeWormFromPlayerButtonAvailable){
+//					if(Dice.FrozenDiceList.contains(6)){
+//						int AttackedPlayer=Integer.valueOf(JOptionPane.showInputDialog("Which player would you like to take a worm from? (Enter their Number)"));
+//						if(1<=AttackedPlayer && AttackedPlayer<=NUMBEROFPLAYERS){
+//							if(PlayerWormsArray.get(AttackedPlayer-1).playerwormsarraylist.size()>0 && ActivePlayerCount!=AttackedPlayer-1){
+//								if(Dice.dicesum==PlayerWormsArray.get(AttackedPlayer-1).playerwormsarraylist.get(0)){
+//									currentplayeractions.performTakeWormFromPlayer(PlayerWormsArray.get(AttackedPlayer-1).playerwormsarraylist.get(0));
+//									PlayerWormsArray.get(AttackedPlayer-1).playerwormsarraylist.remove(0);
+//									currentplayeractions.dicerollavailable=true;
+//									TakeWormFromPlayerButtonAvailable=false;
+//									TakeWormFromGrillButtonAvailable=false;
+//									listenfordicenumber=true;
+////									FreezeDiceButtonAvailable=false;
+//									EndPlayerTurn=true;
+//								}
+//								else {
+//									JOptionPane.showMessageDialog(null, String.format("You dice sum does not match the other player's top worm!"));
+//								}
+//							}
+//							else if(ActivePlayerCount==AttackedPlayer-1){
+//								JOptionPane.showMessageDialog(null, String.format("You cannot steal from yourself!"));
+//							}
+//							else{
+//								JOptionPane.showMessageDialog(null, String.format("That player has no worms to take!"));
+//							}
+//						}
+//						else{
+//							JOptionPane.showMessageDialog(null, String.format("Please enter a valid number!"));
+//						}
+//					}
+//					else{
+//						JOptionPane.showMessageDialog(null, String.format("You do no have any worm dice (W) frozen, so you cannot take from the other player!"));
+//					}
+//				}
+//				else if(currentplayeractions.dicerollavailable==false && TakeWormFromGrillButtonAvailable==false && TakeWormFromGrillButtonAvailable==false){
+//					JOptionPane.showMessageDialog(null, String.format("You must select a number to freeze from the active dice"));
+//				}
+//				else{
+//					JOptionPane.showMessageDialog(null, "You must roll the dice first!");
+//				}
+//				performGamePanelUpdate();
+//				performEndOfGameCheck();
+//			}
+//			else{
+//				JOptionPane.showMessageDialog(null, String.format("%s", event.getActionCommand()));
+//			}
 		}
 	}
 	
@@ -750,9 +828,9 @@ public class GrillWormsHandlerClass implements ActionListener {
 	
 	private void performGamePanelUpdate(){
 		//performGameStatusUpdate();
+		Dice.sumDice();
 		performGrillPaneupdate();
 		performOptionPaneupdate();
-		Dice.sumDice();
 		performDiceSumPaneupdate();
 		performActiveDicePaneupdate();
 		performFrozenDicePaneupdate();
@@ -760,6 +838,7 @@ public class GrillWormsHandlerClass implements ActionListener {
 		MainPane.validate();
 		MainPane.repaint();
 		performCurrentPlayerCheck();
+		performEndOfGameCheck();
 	}
 	
 	private void performCurrentPlayerCheck(){
@@ -791,19 +870,24 @@ public class GrillWormsHandlerClass implements ActionListener {
 		GrillWormButtons.clear();
 		GrillPaneWorms.removeAll();
 		for(int x=0; x<Grill.grillworms.size(); x++){
-			if(GrillWormButtonsAreGreen && Grill.grillworms.get(x)<=Dice.dicesum){
+			if(listenforgrillwormnumber==true && Grill.grillworms.contains(Dice.dicesum) && Grill.grillworms.get(x)==Dice.dicesum && Dice.FrozenDiceList.contains(6)){
 				GrillWormButtons.add(new JGradientButton(Grill.grillworms.get(x).toString(), Color.GREEN));
 				GrillWormButtons.get(x).setIcon(setWormTileImage(Grill.grillworms.get(x)));
 				GrillWormButtons.get(x).setBorder(new LineBorder(Color.GREEN, 4));
-				
-			}	
+				GrillWormButtons.get(x).addActionListener(new GrillWormsHandlerClass(Grill.grillworms.get(x)));
+			}
+			else if(listenforgrillwormnumber==true && Grill.grillworms.contains(Dice.dicesum)==false && Grill.grillworms.get(x)<Dice.dicesum && Dice.FrozenDiceList.contains(6)){
+				GrillWormButtons.add(new JGradientButton(Grill.grillworms.get(x).toString(), Color.GREEN));
+				GrillWormButtons.get(x).setIcon(setWormTileImage(Grill.grillworms.get(x)));
+				GrillWormButtons.get(x).setBorder(new LineBorder(Color.GREEN, 4));	
+				GrillWormButtons.get(x).addActionListener(new GrillWormsHandlerClass(Grill.grillworms.get(x)));
+			}
 			else{
 				GrillWormButtons.add(new JButton(Grill.grillworms.get(x).toString(), setWormTileImage(Grill.grillworms.get(x))));
 			}
 			GrillWormButtons.get(x).setVerticalTextPosition(SwingConstants.TOP);
 			GrillWormButtons.get(x).setHorizontalTextPosition(SwingConstants.CENTER);
 			GrillWormButtons.get(x).setPreferredSize(new Dimension(60,80));
-			GrillWormButtons.get(x).addActionListener(new GrillWormsHandlerClass(Grill.grillworms.get(x)));
 			GrillPaneWorms.add(GrillWormButtons.get(x));
 		}
 
@@ -827,28 +911,27 @@ public class GrillWormsHandlerClass implements ActionListener {
 //			//FreezeDiceButton.setBackground(Color.GRAY);
 //			OptionPaneOptions.add(FreezeDiceButtonGray);
 //		}
-		if(TakeWormFromGrillButtonAvailable){
+		//if(TakeWormFromGrillButtonAvailable){
 			//FreezeDiceButton.setBackground(null);
-			OptionPaneOptions.add(TakeWormFromGrillButtonGreen);
-		}
-		else if(TakeWormFromGrillButtonAvailable==false){
+			//OptionPaneOptions.add(TakeWormFromGrillButtonGreen);
+		//}
+		//else if(TakeWormFromGrillButtonAvailable==false){
 			//FreezeDiceButton.setBackground(Color.GRAY);
-			OptionPaneOptions.add(TakeWormFromGrillButtonGray);
-		}
+			//OptionPaneOptions.add(TakeWormFromGrillButtonGray);
+		//}
 		//OptionPaneOptions.add(RollDiceButton);
 		//OptionPaneOptions.add(FreezeDiceButton);
 		//OptionPaneOptions.add(TakeWormFromGrillButtonGreen);
-		if(NUMBEROFPLAYERS>1){
-			if(TakeWormFromPlayerButtonAvailable){
-				//FreezeDiceButton.setBackground(null);
-				OptionPaneOptions.add(TakeWormFromPlayerButtonGreen);
-			}
-			else if(TakeWormFromPlayerButtonAvailable==false){
-				//FreezeDiceButton.setBackground(Color.GRAY);
-				OptionPaneOptions.add(TakeWormFromPlayerButtonGray);
-			}
-			//OptionPaneOptions.add(TakeWormFromPlayerButton);
-		}
+//		if(NUMBEROFPLAYERS>1){
+//			if(TakeWormFromPlayerButtonAvailable){
+//				//FreezeDiceButton.setBackground(null);
+//				OptionPaneOptions.add(TakeWormFromPlayerButtonGreen);
+//			}
+//			else if(TakeWormFromPlayerButtonAvailable==false){
+//				//FreezeDiceButton.setBackground(Color.GRAY);
+//				OptionPaneOptions.add(TakeWormFromPlayerButtonGray);
+//			}		//OptionPaneOptions.add(TakeWormFromPlayerButton);
+//		}
 	}
 	
 	private void performDiceSumPaneupdate(){
@@ -860,11 +943,11 @@ public class GrillWormsHandlerClass implements ActionListener {
 		ActiveDicePaneDice.removeAll();
 		for(int x=0; x<Dice.ActiveDiceList.size(); x++){
 			if(ActiveDiceButtonsAreGreen && Dice.FrozenDiceList.contains(Dice.ActiveDiceList.get(x))==false){
-				ActiveDiceButtons.add(x, new JGradientButton(Color.GREEN));
+				ActiveDiceButtons.add(new JGradientButton(Color.GREEN));
 				ActiveDiceButtons.get(x).setBorder(new LineBorder(Color.GREEN, 4));
 			}
 			else{
-				ActiveDiceButtons.add(x, new JButton());
+				ActiveDiceButtons.add(new JButton());
 			}
 			ActiveDiceButtons.get(x).setIcon(setDiceImage(Dice.ActiveDiceList.get(x)));
 			ActiveDiceButtons.get(x).setPreferredSize(new Dimension(60,60));
@@ -903,7 +986,20 @@ public class GrillWormsHandlerClass implements ActionListener {
 			for(int y=0; y<PlayerWormsArray.get(x).playerwormsarraylist.size(); y++){
 				//PlayerWormButtons.add(new JButton(PlayerWormsArray.get(x).playerwormsarraylist.get(y).toString()));
 				//PlayerWormPanelArray.get(x).PlayerWormsPaneWorms.add(PlayerWormButtons.get(y));
+				if(PlayerWormsArray.get(x).playerwormsarraylist.size()>0 && NUMBEROFPLAYERS>1){	
+					if(listenforplayerwormnumber==true && PlayerWormsArray.get(x).playerwormsarraylist.get(0)==Dice.dicesum && y==0 && x!=ActivePlayerCount && Dice.FrozenDiceList.contains(6)){
+						PlayerWormButtons.add(new JGradientButton(PlayerWormsArray.get(x).playerwormsarraylist.get(y).toString(), Color.GREEN));
+						PlayerWormButtons.get(y).setIcon(setWormTileImage(PlayerWormsArray.get(x).playerwormsarraylist.get(y)));
+						PlayerWormButtons.get(y).setBorder(new LineBorder(Color.GREEN, 4));
+						PlayerWormButtons.get(y).addActionListener(new PlayerWormsHandlerClass(x, Grill.grillworms.get(x)));
+					}
+					else{
+						PlayerWormButtons.add(new JButton(PlayerWormsArray.get(x).playerwormsarraylist.get(y).toString(), setWormTileImage(PlayerWormsArray.get(x).playerwormsarraylist.get(y))));
+					}
+				}
+				else{
 				PlayerWormButtons.add(new JButton(PlayerWormsArray.get(x).playerwormsarraylist.get(y).toString(), setWormTileImage(PlayerWormsArray.get(x).playerwormsarraylist.get(y))));
+				}
 				PlayerWormButtons.get(y).setVerticalTextPosition(SwingConstants.TOP);
 				PlayerWormButtons.get(y).setHorizontalTextPosition(SwingConstants.CENTER);
 				PlayerWormButtons.get(y).setPreferredSize(new Dimension(60,80));
