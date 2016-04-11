@@ -1,4 +1,4 @@
-package Version10_inprogress;
+
 public class Main {
 	
 	public static boolean startgame = false;

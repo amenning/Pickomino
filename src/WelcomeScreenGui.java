@@ -1,5 +1,3 @@
-package Version10_inprogress;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;

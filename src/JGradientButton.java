@@ -1,5 +1,3 @@
-package Version10_inprogress;
-
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
