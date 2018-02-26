@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 
 public class WelcomeScreenGui extends JFrame {
 		
-	private ImageIcon CoverImage = new ImageIcon(getClass().getResource("PickominoBoxCoverImage.png"));
+	private ImageIcon CoverImage = new ImageIcon(getClass().getResource("/images/PickominoBoxCoverImage.png"));
 	private Image CoverImageImage = CoverImage.getImage();
 	
 	private JPanel WelcomePaneMain;

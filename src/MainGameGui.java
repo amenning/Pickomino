@@ -57,29 +57,29 @@ public class MainGameGui extends JFrame {
 	private ArrayList<ActivePlayerActions> ActivePlayerActionsArray = new ArrayList<ActivePlayerActions>();
 	private ArrayList<Integer> ScoreArray = new ArrayList<Integer>();
 	
-	private ImageIcon DiceImageOnePip = new ImageIcon(getClass().getResource("DiceFaceOne.png"));
+	private ImageIcon DiceImageOnePip = new ImageIcon(getClass().getResource("/images/DiceFaceOne.png"));
 	private Image DiceImageOnePipImage = DiceImageOnePip.getImage();
-	private ImageIcon DiceImageTwoPip = new ImageIcon(getClass().getResource("DiceFaceTwo.png"));
+	private ImageIcon DiceImageTwoPip = new ImageIcon(getClass().getResource("/images/DiceFaceTwo.png"));
 	private Image DiceImageTwoPipImage = DiceImageTwoPip.getImage();
-	private ImageIcon DiceImageThreePip = new ImageIcon(getClass().getResource("DiceFaceThree.png"));
+	private ImageIcon DiceImageThreePip = new ImageIcon(getClass().getResource("/images/DiceFaceThree.png"));
 	private Image DiceImageThreePipImage = DiceImageThreePip.getImage();
-	private ImageIcon DiceImageFourPip = new ImageIcon(getClass().getResource("DiceFaceFour.png"));
+	private ImageIcon DiceImageFourPip = new ImageIcon(getClass().getResource("/images/DiceFaceFour.png"));
 	private Image DiceImageFourPipImage = DiceImageFourPip.getImage();
-	private ImageIcon DiceImageFivePip = new ImageIcon(getClass().getResource("DiceFaceFive.png"));
+	private ImageIcon DiceImageFivePip = new ImageIcon(getClass().getResource("/images/DiceFaceFive.png"));
 	private Image DiceImageFivePipImage = DiceImageFivePip.getImage();
-	private ImageIcon DiceImageWorm = new ImageIcon(getClass().getResource("OneWormTile.png"));
+	private ImageIcon DiceImageWorm = new ImageIcon(getClass().getResource("/images/OneWormTile.png"));
 	private Image DiceImageWormImage = DiceImageWorm.getImage();
 	
-	private ImageIcon OneWormTileIcon = new ImageIcon(getClass().getResource("OneWormTile.png"));
+	private ImageIcon OneWormTileIcon = new ImageIcon(getClass().getResource("/images/OneWormTile.png"));
 	private Image OneWormTileImage = OneWormTileIcon.getImage();
-	private ImageIcon TwoWormTileIcon = new ImageIcon(getClass().getResource("TwoWormTile.png"));
+	private ImageIcon TwoWormTileIcon = new ImageIcon(getClass().getResource("/images/TwoWormTile.png"));
 	private Image TwoWormTileImage = TwoWormTileIcon.getImage();
-	private ImageIcon ThreeWormTileIcon = new ImageIcon(getClass().getResource("ThreeWormTile.png"));
+	private ImageIcon ThreeWormTileIcon = new ImageIcon(getClass().getResource("/images/ThreeWormTile.png"));
 	private Image ThreeWormTileImage = ThreeWormTileIcon.getImage();
-	private ImageIcon FourWormTileIcon = new ImageIcon(getClass().getResource("FourWormTile.png"));
+	private ImageIcon FourWormTileIcon = new ImageIcon(getClass().getResource("/images/FourWormTile.png"));
 	private Image FourWormTileImage = FourWormTileIcon.getImage();
 	
-	private ImageIcon BackgroundImageIcon = new ImageIcon(getClass().getResource("BackgroundImage.png"));
+	private ImageIcon BackgroundImageIcon = new ImageIcon(getClass().getResource("/images/BackgroundImage.png"));
 	
 	private JButton RollDiceButtonGray;
 	private JButton RollDiceButtonGreen;
