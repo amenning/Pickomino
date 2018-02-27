@@ -1,3 +1,5 @@
+package com.pickominio.model;
+
 import java.util.ArrayList;
 
 public class PlayerWorms {

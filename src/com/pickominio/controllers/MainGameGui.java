@@ -1,3 +1,7 @@
+package com.pickominio.controllers;
+
+import com.pickominio.model.*;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -150,7 +154,7 @@ public class MainGameGui extends JFrame {
 		GrillPaneTitle.setPreferredSize(new Dimension(800,25));
 		GrillPaneWorms.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 5));
 		GrillPaneWorms.setPreferredSize(new Dimension(800,100));
-		for(int x=0; x<Grill.getGrillWormsSize(); x++){
+		for(int x = 0; x< Grill.getGrillWormsSize(); x++){
 			GrillWormButtons.add(new JButton(String.valueOf(Grill.getGrillWormsValue(x)), setWormTileImage(Grill.getGrillWormsValue(x))));
 			GrillWormButtons.get(x).setVerticalTextPosition(SwingConstants.TOP);
 			GrillWormButtons.get(x).setHorizontalTextPosition(SwingConstants.CENTER);
@@ -398,7 +402,7 @@ public class MainGameGui extends JFrame {
 			}
 			
 			if(activegrillwormnumberselected!=0){
-				if(Grill.doesGrillWormsContainValue(Dice.getDiceSum()) && activegrillwormnumberselected==Dice.getDiceSum()){
+				if(Grill.doesGrillWormsContainValue(Dice.getDiceSum()) && activegrillwormnumberselected== Dice.getDiceSum()){
 					currentplayeractions.performTakeWormFromGrill(activegrillwormnumberselected);
 					Grill.RemovePrizeWormFromGrill(activegrillwormnumberselected);
 					currentplayeractions.setDiceRollAvailable(true);
@@ -504,7 +508,7 @@ public class MainGameGui extends JFrame {
 					if(NUMBEROFPLAYERS>1){	
 						for(int z=0; z<NUMBEROFPLAYERS; z++){
 							if(ActivePlayerCount!=z && PlayerWormsArray.get(z).getPlayerWormsArrayListSize()>0){
-								if(PlayerWormsArray.get(z).getPlayerWormsArrayListWormValue(0)==Dice.getLastChanceDiceSum()){
+								if(PlayerWormsArray.get(z).getPlayerWormsArrayListWormValue(0)== Dice.getLastChanceDiceSum()){
 									if(Dice.doesActiveDiceListContainValue(6) || Dice.doesFrozenDiceListContainValue(6)){
 										lastchancewormsteal=true;
 									}
@@ -514,7 +518,7 @@ public class MainGameGui extends JFrame {
 					}
 					
 					if(lastchancewormsteal==false){
-						if(ActiveDiceFaceRemainingCheck==1 && Dice.getLastChanceDiceSum()<Grill.getGrillWormsValue(0)){
+						if(ActiveDiceFaceRemainingCheck==1 && Dice.getLastChanceDiceSum()< Grill.getGrillWormsValue(0)){
 							JOptionPane.showMessageDialog(null, "You cannot roll anymore and you cannot take a worm; you have bunked!");
 							currentplayeractions.performPlayerBunk();
 						}
@@ -633,14 +637,14 @@ public class MainGameGui extends JFrame {
 	private void performGrillPaneupdate(){
 		GrillWormButtons.clear();
 		GrillPaneWorms.removeAll();
-		for(int x=0; x<Grill.getGrillWormsSize(); x++){
-			if(listenforgrillwormnumber==true && Grill.doesGrillWormsContainValue(Dice.getDiceSum()) && Grill.getGrillWormsValue(x)==Dice.getDiceSum() && Dice.doesFrozenDiceListContainValue(6)){
+		for(int x = 0; x< Grill.getGrillWormsSize(); x++){
+			if(listenforgrillwormnumber==true && Grill.doesGrillWormsContainValue(Dice.getDiceSum()) && Grill.getGrillWormsValue(x)== Dice.getDiceSum() && Dice.doesFrozenDiceListContainValue(6)){
 				GrillWormButtons.add(new JGradientButton(String.valueOf(Grill.getGrillWormsValue(x)), Color.GREEN));
 				GrillWormButtons.get(x).setIcon(setWormTileImage(Grill.getGrillWormsValue(x)));
 				GrillWormButtons.get(x).setBorder(new LineBorder(Color.GREEN, 4));
 				GrillWormButtons.get(x).addActionListener(new GrillWormsHandlerClass(Grill.getGrillWormsValue(x)));
 			}
-			else if(listenforgrillwormnumber==true && Grill.doesGrillWormsContainValue(Dice.getDiceSum())==false && Grill.getGrillWormsValue(x)<Dice.getDiceSum() && Dice.doesFrozenDiceListContainValue(6)){
+			else if(listenforgrillwormnumber==true && Grill.doesGrillWormsContainValue(Dice.getDiceSum())==false && Grill.getGrillWormsValue(x)< Dice.getDiceSum() && Dice.doesFrozenDiceListContainValue(6)){
 				GrillWormButtons.add(new JGradientButton(String.valueOf(Grill.getGrillWormsValue(x)), Color.GREEN));
 				GrillWormButtons.get(x).setIcon(setWormTileImage(Grill.getGrillWormsValue(x)));
 				GrillWormButtons.get(x).setBorder(new LineBorder(Color.GREEN, 4));	
@@ -675,7 +679,7 @@ public class MainGameGui extends JFrame {
 	private void performActiveDicePaneupdate(){
 		ActiveDiceButtons.clear();
 		ActiveDicePaneDice.removeAll();
-		for(int x=0; x<Dice.getActiveDiceListSize(); x++){
+		for(int x = 0; x< Dice.getActiveDiceListSize(); x++){
 			if(ActiveDiceButtonsAreGreen && Dice.doesFrozenDiceListContainValue(Dice.getActiveDiceListValue(x))==false){
 				ActiveDiceButtons.add(new JGradientButton(Color.GREEN));
 				ActiveDiceButtons.get(x).setBorder(new LineBorder(Color.GREEN, 4));
@@ -693,7 +697,7 @@ public class MainGameGui extends JFrame {
 	private void performFrozenDicePaneupdate(){
 		FrozenDiceButtons.clear();
 		FrozenDicePaneDice.removeAll();
-		for(int x=0; x<Dice.getFrozenDiceListSize(); x++){
+		for(int x = 0; x< Dice.getFrozenDiceListSize(); x++){
 			FrozenDiceButtons.add(new JButton(setDiceImage(Dice.getFrozenDiceListValue(x))));
 			FrozenDiceButtons.get(x).setPreferredSize(new Dimension(60,60));
 			FrozenDicePaneDice.add(FrozenDiceButtons.get(x));
@@ -714,7 +718,7 @@ public class MainGameGui extends JFrame {
 			}
 			for(int y=0; y<PlayerWormsArray.get(x).getPlayerWormsArrayListSize(); y++){
 				if(PlayerWormsArray.get(x).getPlayerWormsArrayListSize()>0 && NUMBEROFPLAYERS>1){	
-					if(listenforplayerwormnumber==true && PlayerWormsArray.get(x).getPlayerWormsArrayListWormValue(0)==Dice.getDiceSum() && y==0 && x!=ActivePlayerCount && Dice.doesFrozenDiceListContainValue(6)){
+					if(listenforplayerwormnumber==true && PlayerWormsArray.get(x).getPlayerWormsArrayListWormValue(0)== Dice.getDiceSum() && y==0 && x!=ActivePlayerCount && Dice.doesFrozenDiceListContainValue(6)){
 						PlayerWormButtons.add(new JGradientButton(String.valueOf(PlayerWormsArray.get(x).getPlayerWormsArrayListWormValue(y)), Color.GREEN));
 						PlayerWormButtons.get(y).setIcon(setWormTileImage(PlayerWormsArray.get(x).getPlayerWormsArrayListWormValue(y)));
 						PlayerWormButtons.get(y).setBorder(new LineBorder(Color.GREEN, 4));

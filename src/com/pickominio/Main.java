@@ -1,10 +1,16 @@
+package com.pickominio;
+
+import com.pickominio.controllers.MainGameGui;
+import com.pickominio.controllers.WelcomeScreenGui;
+import com.pickominio.model.Dice;
+import com.pickominio.model.Grill;
 
 public class Main {
 	
 	public static boolean startgame = false;
 	
 	public static void main (String[] arg) {
-			
+
 		WelcomeScreenGui welcomego = new WelcomeScreenGui();
 		
 //		while(startgame==false){
@@ -25,7 +31,7 @@ public class Main {
 		
 		welcomego.dispose();
 		
-		Grill MainGrill = new Grill();	
+		Grill MainGrill = new Grill();
 		Dice dice = new Dice();
 			
 		MainGameGui gamego = new MainGameGui();

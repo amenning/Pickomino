@@ -1,3 +1,5 @@
+package com.pickominio.model;
+
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;

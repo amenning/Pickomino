@@ -1,3 +1,8 @@
+package com.pickominio.controllers;
+
+import com.pickominio.Main;
+import com.pickominio.model.JGradientButton;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;

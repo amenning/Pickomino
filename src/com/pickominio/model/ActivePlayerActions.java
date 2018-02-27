@@ -1,3 +1,7 @@
+package com.pickominio.model;
+
+import com.pickominio.controllers.MainGameGui;
+
 import javax.swing.JOptionPane;
 
 public class ActivePlayerActions {

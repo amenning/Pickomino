@@ -1,3 +1,5 @@
+package com.pickominio.model;
+
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
