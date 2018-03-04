@@ -1,6 +1,6 @@
 package com.pickominio.model;
 
-import com.pickominio.controllers.MainGameGui;
+import com.pickominio.controllers.Game;
 
 import javax.swing.JOptionPane;
 
@@ -35,13 +35,13 @@ public class ActivePlayerActions {
 			Dice.restartAllDice();
 			dicerollavailable=false;
 			Dice.setBunk(false);
-			MainGameGui.setEndPlayerTurn(true);
+			Game.setEndPlayerTurn(true);
 		}
 		else{
 			Dice.restartAllDice();
 			dicerollavailable=false;
 			Dice.setBunk(false);
-			MainGameGui.setEndPlayerTurn(true);
+			Game.setEndPlayerTurn(true);
 		}
 
 	}
