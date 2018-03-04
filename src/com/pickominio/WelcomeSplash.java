@@ -17,7 +17,7 @@ public class WelcomeSplash extends Preloader {
 
         Parent root = FXMLLoader.load(getClass()
                 .getResource("/fxml/welcome.fxml"));
-        primaryStage.setScene(new Scene(root, 525, 525));
+        primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();

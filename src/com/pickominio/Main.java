@@ -6,6 +6,7 @@ import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -16,10 +17,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Grill MainGrill = new Grill();
-        Dice dice = new Dice();
-
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/gameboard.fxml"));
+        Parent root = FXMLLoader.load(getClass()
+                .getResource("/fxml/gameboard.fxml"));
+        primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         //primaryStage.show();
     }

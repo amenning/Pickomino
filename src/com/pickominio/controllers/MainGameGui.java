@@ -116,6 +116,10 @@ public class MainGameGui extends JFrame {
 	
 	public MainGameGui(){
 	    super("Pickomino");
+
+        Grill MainGrill = new Grill();
+        Dice dice = new Dice();
+
 	    NUMBEROFPLAYERS=0;
 		while(NUMBEROFPLAYERS<1 || NUMBEROFPLAYERS>7){
 				try{
