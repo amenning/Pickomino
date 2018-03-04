@@ -7,7 +7,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -56,7 +55,7 @@ public class MainGameGui extends JFrame {
 	private ArrayList<JButton> ActiveDiceButtons = new ArrayList<JButton>();
 	private ArrayList<JButton> FrozenDiceButtons = new ArrayList<JButton>();
 	private ArrayList<JButton> PlayerWormButtons = new ArrayList<JButton>();
-	private ArrayList<createPlayerWormPanels> PlayerWormPanelArray = new ArrayList<createPlayerWormPanels>();
+	private ArrayList<PlayerWormPanels> PlayerWormPanelArray = new ArrayList<PlayerWormPanels>();
 	private ArrayList<PlayerWorms> PlayerWormsArray = new ArrayList<PlayerWorms>();
 	private ArrayList<ActivePlayerActions> ActivePlayerActionsArray = new ArrayList<ActivePlayerActions>();
 	private ArrayList<Integer> ScoreArray = new ArrayList<Integer>();
@@ -316,7 +315,7 @@ public class MainGameGui extends JFrame {
 		GamePane.add(FrozenDicePaneMain, gbc);
 			
 		for(int x=0; x<NUMBEROFPLAYERS; x++){
-			PlayerWormPanelArray.add(new createPlayerWormPanels(PlayerWormsArray.get(x).getPlayerName(), x+1, TitleMessageFont));
+			PlayerWormPanelArray.add(new PlayerWormPanels(PlayerWormsArray.get(x).getPlayerName(), x+1, TitleMessageFont));
 			if(ActivePlayerCount==x){
 				PlayerWormPanelArray.get(x).PlayerWormsTextField.setOpaque(true);
 				PlayerWormPanelArray.get(x).PlayerWormsTextField.setBackground(Color.GREEN);
@@ -772,56 +771,3 @@ public class MainGameGui extends JFrame {
 	
 }
 
-class createPlayerWormPanels extends JFrame{
-	public JPanel PlayerWormsPaneMain;
-	public JPanel PlayerWormsPaneTitle;
-	public JPanel PlayerWormsPaneWorms;
-	
-	public JTextField PlayerWormsTextField;
-	
-	createPlayerWormPanels(String playername, int playernumber, Font titlefont){
-	PlayerWormsPaneMain = new JPanel();
-	PlayerWormsPaneMain.setOpaque(false);
-	PlayerWormsPaneTitle = new JPanel();
-	PlayerWormsPaneTitle.setOpaque(false);
-	PlayerWormsPaneWorms = new JPanel();
-	PlayerWormsPaneWorms.setOpaque(false);
-	PlayerWormsPaneMain.setLayout(new BorderLayout());
-	PlayerWormsPaneMain.setPreferredSize(new Dimension(800,135));
-	PlayerWormsPaneTitle.setLayout(new FlowLayout());
-	PlayerWormsPaneTitle.setPreferredSize(new Dimension(200,35));
-	PlayerWormsPaneWorms.setLayout(new FlowLayout());
-	PlayerWormsPaneWorms.setPreferredSize(new Dimension(800,100));
-	PlayerWormsTextField = new JTextField("          " + playernumber + ". " + playername + "'s Worms" + "          ");
-	PlayerWormsTextField.setOpaque(false);
-	PlayerWormsTextField.setEditable(false);
-	PlayerWormsTextField.setFont(titlefont);
-	PlayerWormsTextField.setHorizontalAlignment(JTextField.CENTER);
-	PlayerWormsTextField.setBackground(null);
-	PlayerWormsTextField.setBorder(null);
-	PlayerWormsPaneTitle.add(PlayerWormsTextField);
-	PlayerWormsPaneMain.add(PlayerWormsPaneTitle, BorderLayout.NORTH);
-	PlayerWormsPaneMain.add(PlayerWormsPaneWorms, BorderLayout.CENTER);
-	}
-	
-}
-
-class ImagePanel extends JPanel {
-
-	  private Image img;
-
-	  public ImagePanel(ImageIcon imageicon) {
-		img = imageicon.getImage();
-	    Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-	    setPreferredSize(size);
-	    setMinimumSize(size);
-	    setMaximumSize(size);
-	    setSize(size);
-	    setLayout(new BorderLayout());
-	  }
-
-	  public void paintComponent(Graphics g) {
-	    g.drawImage(img, 0, 0, null);
-	  }
-
-}
