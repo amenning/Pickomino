@@ -8,6 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            stylesheets="/css/main.css"
             fx:controller="com.pickominio.controllers.MainGameGui"
             prefHeight="400.0" prefWidth="600.0">
 

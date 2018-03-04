@@ -115,8 +115,8 @@ public class MainGameGui extends JFrame {
 	private JPanel OptionPaneOptions;
 	
 	public MainGameGui(){
-		super("Pickomino");
-		NUMBEROFPLAYERS=0;
+	    super("Pickomino");
+	    NUMBEROFPLAYERS=0;
 		while(NUMBEROFPLAYERS<1 || NUMBEROFPLAYERS>7){
 				try{
 					NUMBEROFPLAYERS = Integer.valueOf(JOptionPane.showInputDialog("How many players are there? Enter a value between 1 and 7"));
