@@ -10,6 +10,6 @@
             xmlns:fx="http://javafx.com/fxml"
             stylesheets="/css/welcome.css"
             fx:controller="com.pickominio.controller.Welcome"
-            prefHeight="525.0" prefWidth="525.0">
+            prefHeight="515.0" prefWidth="520.0">
 
 </AnchorPane>

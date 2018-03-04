@@ -18,8 +18,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass()
                 .getResource("/fxml/gameboard.fxml"));
         primaryStage.setScene(new Scene(root));
-        primaryStage.setResizable(false);
-        //primaryStage.show();
+        primaryStage.setResizable(true);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
