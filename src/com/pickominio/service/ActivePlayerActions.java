@@ -1,6 +1,9 @@
-package com.pickominio.model;
+package com.pickominio.service;
 
-import com.pickominio.controllers.Game;
+import com.pickominio.controller.Game;
+import com.pickominio.model.Dice;
+import com.pickominio.model.Grill;
+import com.pickominio.model.PlayerWorms;
 
 import javax.swing.*;
 

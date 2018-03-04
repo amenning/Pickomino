@@ -1,6 +1,7 @@
-package com.pickominio.controllers;
+package com.pickominio.controller;
 
 import com.pickominio.model.*;
+import com.pickominio.service.ActivePlayerActions;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

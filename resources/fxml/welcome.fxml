@@ -9,7 +9,7 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             stylesheets="/css/welcome.css"
-            fx:controller="com.pickominio.controllers.Welcome"
+            fx:controller="com.pickominio.controller.Welcome"
             prefHeight="525.0" prefWidth="525.0">
 
 </AnchorPane>
