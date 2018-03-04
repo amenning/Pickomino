@@ -1,7 +1,5 @@
 package com.pickominio;
 
-import com.pickominio.model.Dice;
-import com.pickominio.model.Grill;
 import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +22,7 @@ public class Main extends Application {
         //primaryStage.show();
     }
 
-	public static void main (String[] args) {
+    public static void main(String[] args) {
         LauncherImpl.launchApplication(Main.class, WelcomeSplash.class, args);
-	}
+    }
 }
