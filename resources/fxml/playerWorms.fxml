@@ -21,7 +21,7 @@
                       layoutY="15.0"
                       strokeType="OUTSIDE"
                       strokeWidth="0.0"
-                      text="Worms on the Grill"
+                      text="Player Worms"
                       textOrigin="CENTER" />
             </children>
         </Pane>

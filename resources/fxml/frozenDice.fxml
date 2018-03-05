@@ -20,7 +20,7 @@
                       layoutY="15.0"
                       strokeType="OUTSIDE"
                       strokeWidth="0.0"
-                      text="Active Dice"
+                      text="Frozen Dice"
                       textOrigin="CENTER" />
             </children>
         </Pane>
