@@ -1,29 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      id="activeDice"
-      prefHeight="150.0"
-      prefWidth="100.0">
+<VBox id="activeDice" prefHeight="100.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Pane prefHeight="35.0" prefWidth="1200.0">
             <children>
-                <Text layoutX="563.0"
-                      layoutY="15.0"
-                      strokeType="OUTSIDE"
-                      strokeWidth="0.0"
-                      text="Active Dice"
-                      textOrigin="CENTER" />
+                <Text layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active Dice" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="1200.0" />
             </children>
         </Pane>
-        <HBox prefHeight="50.0" prefWidth="200.0">
+        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="20.0">
             <children>
                 <fx:include source="dice.fxml" />
                 <fx:include source="dice.fxml" />

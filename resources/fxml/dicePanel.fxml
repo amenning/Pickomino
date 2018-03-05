@@ -21,7 +21,7 @@
                               layoutY="15.0"
                               strokeType="OUTSIDE"
                               strokeWidth="0.0"
-                              text="Sum of all dice"
+                              text="Sum of frozen dice"
                               textOrigin="CENTER" />
                     </children>
                 </Pane>
