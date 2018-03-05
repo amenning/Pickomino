@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           layoutX="460.0"
+           layoutY="10.0"
+           prefHeight="50.0"
+           prefWidth="150.0">
+    <children>
+        <Pane prefHeight="200.0" prefWidth="200.0" />
+        <Button mnemonicParsing="false" text="Button" />
+    </children>
+</StackPane>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      prefHeight="200.0"
+      prefWidth="1200.0">
+    <children>
+        <Pane id="grill" prefHeight="200.0" prefWidth="1200.0">
+            <children>
+                <Text layoutX="538.0"
+                      layoutY="15.0"
+                      strokeType="OUTSIDE"
+                      strokeWidth="0.0"
+                      text="Worms on the Grill"
+                      textOrigin="CENTER" />
+            </children>
+        </Pane>
+        <HBox prefHeight="282.0" prefWidth="1200.0">
+            <children>
+                <fx:include source="worm.fxml" />
+                <fx:include source="worm.fxml" />
+                <fx:include source="worm.fxml" />
+                <fx:include source="worm.fxml" />
+                <fx:include source="worm.fxml" />
+                <fx:include source="worm.fxml" />
+                <fx:include source="worm.fxml" />
+                <fx:include source="worm.fxml" />
+                <fx:include source="worm.fxml" />
+                <fx:include source="worm.fxml" />
+                <fx:include source="worm.fxml" />
+                <fx:include source="worm.fxml" />
+                <fx:include source="worm.fxml" />
+                <fx:include source="worm.fxml" />
+                <fx:include source="worm.fxml" />
+                <fx:include source="worm.fxml" />
+            </children>
+        </HBox>
+    </children>
+</VBox>

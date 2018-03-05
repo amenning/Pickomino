@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.shape.Rectangle?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml">
+    <children>
+        <VBox id="diceSum"
+              prefHeight="150.0"
+              prefWidth="1200.0">
+            <children>
+                <Pane prefHeight="35.0" prefWidth="1200.0">
+                    <children>
+                        <Text layoutX="552.0"
+                              layoutY="15.0"
+                              strokeType="OUTSIDE"
+                              strokeWidth="0.0"
+                              text="Sum of all dice"
+                              textOrigin="CENTER" />
+                    </children>
+                </Pane>
+                <Pane prefHeight="60.0" prefWidth="1200.0">
+                    <children>
+                        <Rectangle arcHeight="5.0"
+                                   arcWidth="5.0"
+                                   fill="DODGERBLUE"
+                                   height="46.0"
+                                   layoutX="502.0"
+                                   layoutY="7.0"
+                                   stroke="BLACK"
+                                   strokeType="INSIDE"
+                                   width="196.0" />
+                    </children>
+                </Pane>
+            </children>
+        </VBox>
+        <fx:include source="activeDice.fxml" />
+        <fx:include source="frozenDice.fxml" />
+    </children>
+</VBox>
