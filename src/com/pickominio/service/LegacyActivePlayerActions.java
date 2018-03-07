@@ -8,13 +8,13 @@ import com.pickominio.model.PlayerWorms;
 
 import javax.swing.*;
 
-public class ActivePlayerActions {
+public class LegacyActivePlayerActions {
 
     private PlayerWorms currentplayer;
 
     private static boolean dicerollavailable = true;
 
-    public ActivePlayerActions(PlayerWorms player) {
+    public LegacyActivePlayerActions(PlayerWorms player) {
         dicerollavailable = false;
         currentplayer = player;
     }

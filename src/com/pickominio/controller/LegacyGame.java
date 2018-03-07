@@ -1,7 +1,7 @@
 package com.pickominio.controller;
 
 import com.pickominio.model.*;
-import com.pickominio.service.ActivePlayerActions;
+import com.pickominio.service.LegacyActivePlayerActions;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class LegacyGame extends JFrame {
 
-    private ActivePlayerActions currentplayeractions;
+    private LegacyActivePlayerActions currentplayeractions;
 
     private static int ActivePlayerCount = 0;
     private static int NUMBEROFPLAYERS = 0;
@@ -41,7 +41,7 @@ public class LegacyGame extends JFrame {
     private ArrayList<JButton> PlayerWormButtons = new ArrayList<JButton>();
     private ArrayList<PlayerWormPanels> PlayerWormPanelArray = new ArrayList<PlayerWormPanels>();
     private ArrayList<PlayerWorms> PlayerWormsArray = new ArrayList<PlayerWorms>();
-    private ArrayList<ActivePlayerActions> ActivePlayerActionsArray = new ArrayList<ActivePlayerActions>();
+    private ArrayList<LegacyActivePlayerActions> ActivePlayerActionsArray = new ArrayList<LegacyActivePlayerActions>();
     private ArrayList<Integer> ScoreArray = new ArrayList<Integer>();
 
     private ImageIcon DiceImageOnePip = new ImageIcon(getClass().getResource("/images/DiceFaceOne.png"));
@@ -115,7 +115,7 @@ public class LegacyGame extends JFrame {
 
         for (int x = 0; x < NUMBEROFPLAYERS; x++) {
             PlayerWormsArray.add(new PlayerWorms(JOptionPane.showInputDialog(null, String.format("What is Player %s's name?", x + 1))));
-            ActivePlayerActionsArray.add(new ActivePlayerActions(PlayerWormsArray.get(x)));
+            ActivePlayerActionsArray.add(new LegacyActivePlayerActions(PlayerWormsArray.get(x)));
             ScoreArray.add(0);
         }
 
