@@ -5,18 +5,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane prefHeight="50.0" prefWidth="50.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<StackPane prefHeight="50.0"
+           prefWidth="50.0"
+           xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.pickominio.controller.ActiveDice">
     <children>
-        <Pane prefHeight="50.0" prefWidth="50.0">
-         <rotationAxis>
-            <Point3D />
-         </rotationAxis></Pane>
-        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="Button">
-         <rotationAxis>
-            <Point3D />
-         </rotationAxis></Button>
+        <ImageView fitHeight="50.0" fitWidth="50">
+            <image>
+                <Image url="/images/OneWormTile.png"/>
+            </image>
+        </ImageView>
+        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="" onAction="#freezeDice"></Button>
     </children>
-   <rotationAxis>
-      <Point3D />
-   </rotationAxis>
 </StackPane>

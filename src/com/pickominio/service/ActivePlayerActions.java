@@ -1,6 +1,7 @@
 package com.pickominio.service;
 
 import com.pickominio.controller.Game;
+import com.pickominio.controller.LegacyGame;
 import com.pickominio.model.Dice;
 import com.pickominio.model.Grill;
 import com.pickominio.model.PlayerWorms;
@@ -38,12 +39,12 @@ public class ActivePlayerActions {
             Dice.restartAllDice();
             dicerollavailable = false;
             Dice.setBunk(false);
-            Game.setEndPlayerTurn(true);
+            LegacyGame.setEndPlayerTurn(true);
         } else {
             Dice.restartAllDice();
             dicerollavailable = false;
             Dice.setBunk(false);
-            Game.setEndPlayerTurn(true);
+            LegacyGame.setEndPlayerTurn(true);
         }
 
     }

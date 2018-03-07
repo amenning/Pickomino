@@ -10,10 +10,7 @@
     <children>
         <Pane id="grill" prefHeight="200.0" prefWidth="1200.0">
             <children>
-                <Text layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Worms" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="1200.0">
-               <rotationAxis>
-                  <Point3D />
-               </rotationAxis></Text>
+                <Text layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Worms" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="1200.0"></Text>
             </children>
         </Pane>
         <HBox alignment="CENTER" prefHeight="282.0" prefWidth="1200.0" spacing="10.0">

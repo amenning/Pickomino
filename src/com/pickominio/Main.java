@@ -1,5 +1,6 @@
 package com.pickominio;
 
+import com.pickominio.controller.LegacyGame;
 import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +11,9 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void init() throws Exception {
+        // Welcome splash pause
         Thread.sleep(3000);
+        new LegacyGame();
     }
 
     @Override

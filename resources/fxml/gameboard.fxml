@@ -19,7 +19,8 @@
             xmlns="http://javafx.com/javafx/8.0.141"
             xmlns:fx="http://javafx.com/fxml/1"
             stylesheets="/css/gameboard.css"
-            fx:controller="com.pickominio.controller.Game">
+            fx:controller="com.pickominio.controller.Game"
+            fx:id="mainContainer">
    <center>
       <VBox BorderPane.alignment="CENTER">
          <children>

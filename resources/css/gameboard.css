@@ -1,3 +1,7 @@
-* {
+#mainContainer {
   -fx-background-image: url("/images/BackgroundImage.png");
+}
+
+.button {
+  -fx-background-color: none;
 }
