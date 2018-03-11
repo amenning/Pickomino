@@ -1,0 +1,11 @@
+.worm{
+    -fx-background-color: white;
+    -fx-margin: 5px;
+    -fx-padding: 0px 0px 0px 0px;
+    -fx-border-color: #215f1e;
+    -fx-border-style: solid;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-text-align: center;
+}

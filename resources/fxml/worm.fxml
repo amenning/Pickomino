@@ -10,32 +10,31 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane prefHeight="100.0"
-           prefWidth="60.0"
-           xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="com.pickominio.controller.GrillWorm">
+<StackPane prefHeight="70.0" prefWidth="50.0" styleClass="worm, inset" stylesheets="/css/worm.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pickominio.controller.GrillWorm">
     <children>
-        <VBox prefHeight="200.0" prefWidth="100.0">
+        <VBox prefHeight="70.0" prefWidth="50.0">
             <children>
-            <Pane prefHeight="30.0" prefWidth="60.0">
-               <children>
-                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="21" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="60.0" y="15.0">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </Text>
-               </children>
-            </Pane>
-                <ImageView fitHeight="50.0" fitWidth="50">
-                    <image>
-                        <Image url="/images/OneWormTile.png" />
-                    </image>
-               <VBox.margin>
-                  <Insets left="5.0" top="10.0" />
-               </VBox.margin>
-                </ImageView>
+                <Pane prefHeight="20.0" prefWidth="50.0">
+                   <children>
+                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="21" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="50.0" y="15.0">
+                         <font>
+                            <Font size="12.0" />
+                         </font>
+                      </Text>
+                   </children>
+                </Pane>
+                <StackPane styleClass="rounded-image">
+                    <ImageView fitHeight="40.0" fitWidth="40">
+                        <image>
+                            <Image url="/images/OneWormTile.png" />
+                        </image>
+                    </ImageView>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+                </StackPane>
             </children>
         </VBox>
-        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="60.0" onAction="#takeWorm" />
+        <Button mnemonicParsing="false" onAction="#takeWorm" prefHeight="70.0" prefWidth="50.0" />
     </children>
 </StackPane>
