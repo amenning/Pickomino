@@ -17,30 +17,26 @@
               prefHeight="150.0"
               prefWidth="1200.0">
             <children>
-                <Pane styleClass="titles-box" prefHeight="35.0" prefWidth="1200.0">
+                <StackPane styleClass="titles-box" prefHeight="35.0" prefWidth="1200.0">
                     <children>
-                        <Text layoutX="552.0"
-                              layoutY="15.0"
-                              strokeType="OUTSIDE"
+                        <Text strokeType="OUTSIDE"
                               strokeWidth="0.0"
                               text="Sum of frozen dice"
                               styleClass="titles"
                               textOrigin="CENTER" />
                     </children>
-                </Pane>
-                <Pane prefHeight="60.0" prefWidth="1200.0" styleClass="dice-panel, inset">
+                </StackPane>
+                <StackPane prefHeight="60.0" prefWidth="1200.0" styleClass="dice-panel, inset">
                     <children>
                         <Rectangle arcHeight="5.0"
                                    arcWidth="5.0"
                                    fill="DODGERBLUE"
                                    height="46.0"
-                                   layoutX="502.0"
-                                   layoutY="7.0"
                                    stroke="BLACK"
                                    strokeType="INSIDE"
                                    width="196.0" />
                     </children>
-                </Pane>
+                </StackPane>
             </children>
         </VBox>
         <fx:include source="activeDice.fxml" />
