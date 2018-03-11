@@ -8,24 +8,27 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.shape.Rectangle?>
 
+<?import javafx.geometry.Insets?>
 <VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml">
+      xmlns:fx="http://javafx.com/fxml"
+      stylesheets="/css/dicePanel.css">
     <children>
         <VBox id="diceSum"
               prefHeight="150.0"
               prefWidth="1200.0">
             <children>
-                <Pane prefHeight="35.0" prefWidth="1200.0">
+                <Pane styleClass="titles-box" prefHeight="35.0" prefWidth="1200.0">
                     <children>
                         <Text layoutX="552.0"
                               layoutY="15.0"
                               strokeType="OUTSIDE"
                               strokeWidth="0.0"
                               text="Sum of frozen dice"
+                              styleClass="titles"
                               textOrigin="CENTER" />
                     </children>
                 </Pane>
-                <Pane prefHeight="60.0" prefWidth="1200.0">
+                <Pane prefHeight="60.0" prefWidth="1200.0" styleClass="dice-panel, inset">
                     <children>
                         <Rectangle arcHeight="5.0"
                                    arcWidth="5.0"
@@ -43,4 +46,7 @@
         <fx:include source="activeDice.fxml" />
         <fx:include source="frozenDice.fxml" />
     </children>
+    <padding>
+        <Insets top="10.0" />
+    </padding>
 </VBox>

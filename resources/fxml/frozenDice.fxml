@@ -8,14 +8,15 @@
 <?import javafx.scene.text.Text?>
 
 
-<VBox id="activeDice" prefHeight="100.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.geometry.Insets?>
+<VBox id="frozenDice" prefHeight="110.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" stylesheets="/css/frozenDice.css" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Pane prefHeight="35.0" prefWidth="1200.0">
+        <Pane styleClass="titles-box" prefHeight="45.0" prefWidth="1200.0">
             <children>
-                <Text layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frozen Dice" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="1200.0" />
+                <Text styleClass="titles" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frozen Dice" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="1200.0" />
             </children>
         </Pane>
-        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="20.0">
+        <HBox styleClass="frozen-dice, inset" alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
             <children>
                 <fx:include source="dice.fxml" />
                 <fx:include source="dice.fxml" />
@@ -28,4 +29,7 @@
             </children>
         </HBox>
     </children>
+    <padding>
+        <Insets top="10.0" />
+    </padding>
 </VBox>

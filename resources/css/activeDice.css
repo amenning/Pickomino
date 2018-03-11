@@ -1,0 +1,8 @@
+.active-dice{
+    -fx-background-color: #457f86;
+    -fx-border-color: #fff;
+    -fx-border-style: solid;
+    -fx-border-width: 0px 2px 2px 2px;
+    -fx-border-radius: 0px 0px 6px 6px;
+    -fx-min-height: 55px;
+}

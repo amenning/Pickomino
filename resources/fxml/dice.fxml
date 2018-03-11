@@ -7,16 +7,18 @@
 
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<StackPane prefHeight="50.0"
-           prefWidth="50.0"
-           xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
+<StackPane prefHeight="40.0"
+           prefWidth="40.0"
+           xmlns="http://javafx.com/javafx/8.0.141"
+           xmlns:fx="http://javafx.com/fxml/1"
+           stylesheets="/css/dice.css"
            fx:controller="com.pickominio.controller.ActiveDice">
     <children>
-        <ImageView fitHeight="50.0" fitWidth="50">
-            <image>
-                <Image url="/images/OneWormTile.png"/>
-            </image>
-        </ImageView>
-        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="" onAction="#freezeDice"></Button>
+        <Button mnemonicParsing="false"
+                prefHeight="40.0"
+                prefWidth="40.0"
+                text=""
+                onAction="#freezeDice">
+        </Button>
     </children>
 </StackPane>
