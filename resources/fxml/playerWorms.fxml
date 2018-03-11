@@ -16,24 +16,7 @@
             </children>
         </StackPane>
         <HBox styleClass="player-worms, inset" alignment="CENTER" prefHeight="100.0" prefWidth="1200.0" spacing="10.0">
-            <children>
-                <fx:include source="worm.fxml" />
-                <fx:include source="worm.fxml" />
-                <fx:include source="worm.fxml" />
-                <fx:include source="worm.fxml" />
-                <fx:include source="worm.fxml" />
-                <fx:include source="worm.fxml" />
-                <fx:include source="worm.fxml" />
-                <fx:include source="worm.fxml" />
-                <fx:include source="worm.fxml" />
-                <fx:include source="worm.fxml" />
-                <fx:include source="worm.fxml" />
-                <fx:include source="worm.fxml" />
-                <fx:include source="worm.fxml" />
-                <fx:include source="worm.fxml" />
-                <fx:include source="worm.fxml" />
-                <fx:include source="worm.fxml" />
-            </children>
+            <!-- Player worm tiles go here -->
         </HBox>
     </children>
     <padding>

@@ -17,16 +17,7 @@
             </children>
         </StackPane>
         <HBox styleClass="frozen-dice, inset" alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
-            <children>
-                <fx:include source="dice.fxml" />
-                <fx:include source="dice.fxml" />
-                <fx:include source="dice.fxml" />
-                <fx:include source="dice.fxml" />
-                <fx:include source="dice.fxml" />
-                <fx:include source="dice.fxml" />
-                <fx:include source="dice.fxml" />
-                <fx:include source="dice.fxml" />
-            </children>
+            <!-- frozen dice go here -->
         </HBox>
     </children>
     <padding>
