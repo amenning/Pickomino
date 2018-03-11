@@ -8,6 +8,7 @@
 <?import javafx.scene.text.Text?>
 
 
+<?import javafx.geometry.Insets?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       id="playerOptions"
@@ -15,11 +16,13 @@
       layoutY="10.0"
       prefHeight="150.0"
       prefWidth="1200.0"
+      stylesheets="/css/playerOptions.css"
       fx:controller="com.pickominio.controller.PlayerOption">
     <children>
-        <Pane prefHeight="50.0" prefWidth="1200.0">
+        <Pane styleClass="titles-box" prefHeight="50.0" prefWidth="1200.0">
             <children>
-                <Text layoutX="552.0"
+                <Text styleClass="titles"
+                      layoutX="552.0"
                       layoutY="15.0"
                       strokeType="OUTSIDE"
                       strokeWidth="0.0"
@@ -27,15 +30,19 @@
                       textOrigin="CENTER" />
             </children>
         </Pane>
-        <Pane prefHeight="50.0" prefWidth="1200.0">
+        <Pane prefHeight="50.0" prefWidth="1200.0" styleClass="player-options, inset">
             <children>
                 <Button id="rollButton"
                         layoutX="570.0"
                         layoutY="10.0"
                         mnemonicParsing="false"
-                        text="Button"
+                        text="Roll"
+                        styleClass="buttons"
                         onAction="#rollDice" />
             </children>
         </Pane>
     </children>
+    <padding>
+        <Insets top="10.0" />
+    </padding>
 </VBox>
