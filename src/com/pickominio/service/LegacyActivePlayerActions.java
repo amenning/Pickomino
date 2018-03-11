@@ -1,10 +1,9 @@
 package com.pickominio.service;
 
-import com.pickominio.controller.Game;
-import com.pickominio.controller.LegacyGame;
-import com.pickominio.model.Dice;
-import com.pickominio.model.Grill;
-import com.pickominio.model.PlayerWorms;
+import com.pickominio.legacyController.LegacyGame;
+import com.pickominio.legacyModel.Dice;
+import com.pickominio.legacyModel.Grill;
+import com.pickominio.legacyModel.PlayerWorms;
 
 import javax.swing.*;
 

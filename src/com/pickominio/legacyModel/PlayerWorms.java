@@ -1,4 +1,4 @@
-package com.pickominio.model;
+package com.pickominio.legacyModel;
 
 import java.util.ArrayList;
 

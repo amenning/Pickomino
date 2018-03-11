@@ -1,6 +1,6 @@
-package com.pickominio.controller;
+package com.pickominio.legacyController;
 
-import com.pickominio.model.*;
+import com.pickominio.legacyModel.*;
 import com.pickominio.service.LegacyActivePlayerActions;
 
 import javax.swing.*;

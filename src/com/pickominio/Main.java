@@ -1,6 +1,6 @@
 package com.pickominio;
 
-import com.pickominio.controller.LegacyGame;
+import com.pickominio.legacyController.LegacyGame;
 import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

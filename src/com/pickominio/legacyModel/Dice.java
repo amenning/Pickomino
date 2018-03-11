@@ -1,4 +1,4 @@
-package com.pickominio.model;
+package com.pickominio.legacyModel;
 
 import javax.swing.*;
 import java.security.SecureRandom;
