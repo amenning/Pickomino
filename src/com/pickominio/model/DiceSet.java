@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class DiceSet {
     protected static Map<Integer, ArrayList<Dice>> diceSet = new HashMap<>();
-    protected static final int MAX_DICE_SET = 8;
+    protected static final int MAX_DICE_SET_SIZE = 8;
 
     public DiceSet() {
         for (int value = 1; value <= Dice.MAX_DICE_VALUE; ++value) {
