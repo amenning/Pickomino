@@ -6,13 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 public class DiceSet {
+    public static final int MAX_DICE_SET_SIZE = 8;
     protected static Map<Integer, ArrayList<Dice>> diceSet = new HashMap<>();
-    protected static final int MAX_DICE_SET_SIZE = 8;
 
     public DiceSet() {
-        for (int value = 1; value <= Dice.MAX_DICE_VALUE; ++value) {
-            this.diceSet.put(value, new ArrayList<Dice>());
-        }
+        this.resetDiceSet();
     }
 
     public void addDice(Dice dice) {
@@ -23,6 +21,20 @@ public class DiceSet {
         List<Dice> diceGroup = diceSet.get(value);
         diceSet.remove(value);
         return diceGroup;
+    }
+
+    public int getNumberOfDice() {
+        int numberOfDice = 0;
+        for (ArrayList<Dice> diceGroup : diceSet.values()) {
+            numberOfDice += diceGroup.size();
+        }
+        return numberOfDice;
+    }
+
+    public void resetDiceSet() {
+        for (int value = 1; value <= Dice.MAX_DICE_VALUE; ++value) {
+            this.diceSet.put(value, new ArrayList<Dice>());
+        }
     }
 
     public String toString() {

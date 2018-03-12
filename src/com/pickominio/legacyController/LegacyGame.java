@@ -1,7 +1,7 @@
 package com.pickominio.legacyController;
 
 import com.pickominio.legacyModel.*;
-import com.pickominio.service.LegacyActivePlayerActions;
+import com.pickominio.LegacyService.LegacyActivePlayerActions;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

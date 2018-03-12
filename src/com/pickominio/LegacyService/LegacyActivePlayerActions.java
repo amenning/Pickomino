@@ -1,4 +1,4 @@
-package com.pickominio.service;
+package com.pickominio.LegacyService;
 
 import com.pickominio.legacyController.LegacyGame;
 import com.pickominio.legacyModel.Dice;
