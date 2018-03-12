@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class DiceSet {
     public static final int MAX_DICE_SET_SIZE = 8;
-    protected static Map<Integer, ArrayList<Dice>> diceSet = new HashMap<>();
+    protected Map<Integer, ArrayList<Dice>> diceSet = new HashMap<>();
 
     public DiceSet() {
         this.resetDiceSet();
@@ -17,9 +17,19 @@ public class DiceSet {
         diceSet.get(dice.getValue()).add(dice);
     }
 
+    public void addDice(List<Dice> diceGroup) {
+        for (Dice dice : diceGroup) {
+            diceSet.get(dice.getValue()).add(dice);
+        }
+    }
+
+    public boolean hasValue(int value) {
+        return diceSet.get(value).size() != 0;
+    }
+
     public List<Dice> getAllDiceOfValue(int value) {
         List<Dice> diceGroup = diceSet.get(value);
-        diceSet.remove(value);
+        diceSet.put(value, new ArrayList<Dice>());
         return diceGroup;
     }
 

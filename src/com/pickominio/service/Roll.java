@@ -9,7 +9,7 @@ public class Roll {
     public void diceSet(DiceSet diceSet) {
         int numberOfDice = diceSet.getNumberOfDice();
         diceSet.resetDiceSet();
-        for (int number = 0; number < DiceSet.MAX_DICE_SET_SIZE; ++number) {
+        for (int number = 0; number < numberOfDice; ++number) {
             int diceValue = ThreadLocalRandom.current()
                     .nextInt(Dice.MIN_DICE_VALUE, Dice.MAX_DICE_VALUE + 1);
             Dice dice = Dice.buildDice(diceValue);
