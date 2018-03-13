@@ -1,13 +1,8 @@
 package com.pickominio.controller;
 
-import com.pickominio.model.ActiveDiceSet;
-import com.pickominio.model.Dice;
-import com.pickominio.model.DiceSet;
-import com.pickominio.model.FrozenDiceSet;
+import com.pickominio.model.*;
 import com.pickominio.service.FreezeDice;
 import com.pickominio.service.Roll;
-
-import java.util.List;
 
 public class Game {
     public Game() {
@@ -44,5 +39,23 @@ public class Game {
         }
         System.out.println(activeDiceSet);
         System.out.println(frozenDiceSet);
+
+        GrillWormSet grillWormSet = GrillWormSet.build();
+        System.out.println(grillWormSet);
+        System.out.println("Has value 20? " + grillWormSet.hasWorm(20));
+        System.out.println("Has value 30? " + grillWormSet.hasWorm(30));
+        System.out.println("Has value 40? " + grillWormSet.hasWorm(40));
+
+        Worm worm = grillWormSet.takeWorm(30);
+        System.out.println(grillWormSet);
+
+        grillWormSet.addWorm(worm);
+        System.out.println(grillWormSet);
+
+        worm = grillWormSet.removeHighestWormFromGrill();
+        System.out.println(grillWormSet);
+        OutOfGameWormSet deadWorms = OutOfGameWormSet.build();
+        deadWorms.addWorm(worm);
+        System.out.println(deadWorms);
     }
 }
