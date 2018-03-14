@@ -1,6 +1,7 @@
 package com.pickominio.service;
 
 import com.pickominio.exception.ValueAlreadyFrozenException;
+import com.pickominio.exception.ValueMissingException;
 import com.pickominio.model.Dice;
 import com.pickominio.model.DiceSet;
 
@@ -25,6 +26,11 @@ public class FreezeDice {
         if(activeDiceSet == null || frozenDiceSet == null) {
             throw new Exception("Must use from().to().value() method call");
         }
+
+        if (!activeDiceSet.hasValue(value)) {
+            throw new ValueMissingException();
+        }
+
         if(!frozenDiceSet.hasValue(value)) {
             diceGroup = activeDiceSet.getAllDiceOfValue(value);
             frozenDiceSet.addDice(diceGroup);

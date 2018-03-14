@@ -1,5 +1,7 @@
 package com.pickominio.service;
 
+import com.pickominio.exception.ValueAlreadyFrozenException;
+import com.pickominio.exception.ValueMissingException;
 import com.pickominio.model.ActiveDiceSet;
 import com.pickominio.model.Dice;
 import com.pickominio.model.DiceSet;
@@ -37,9 +39,29 @@ public class FreezeDiceTest {
     @Test
     public void diceTransferedSuccessfully() throws Exception {
         freezeDice.from(activeDiceSet)
-                .to(frozenDiceSet)
-                .value(Dice.MAX_DICE_VALUE);
+            .to(frozenDiceSet)
+            .value(Dice.MAX_DICE_VALUE);
         assertFalse(activeDiceSet.hasValue(Dice.MAX_DICE_VALUE));
         assertTrue(frozenDiceSet.hasValue(Dice.MAX_DICE_VALUE));
+    }
+
+    @Test
+    public void valueAlreadyFrozen() throws Exception {
+        exception.expect(ValueAlreadyFrozenException.class);
+        Dice dice = Dice.buildDice(Dice.MAX_DICE_VALUE);
+        frozenDiceSet.addDice(dice);
+
+        freezeDice.from(activeDiceSet)
+            .to(frozenDiceSet)
+            .value(Dice.MAX_DICE_VALUE);
+    }
+
+    @Test
+    public void valueNotInActiveDiceSet() throws Exception {
+        exception.expect(ValueMissingException.class);
+
+        freezeDice.from(activeDiceSet)
+                .to(frozenDiceSet)
+                .value(Dice.MIN_DICE_VALUE);
     }
 }
