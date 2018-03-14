@@ -21,12 +21,22 @@ public class FreezeDice {
         return this;
     }
 
-    public void value(int value) throws ValueAlreadyFrozenException {
+    public void value(int value) throws Exception {
+        if(activeDiceSet == null || frozenDiceSet == null) {
+            throw new Exception("Must use from().to().value() method call");
+        }
         if(!frozenDiceSet.hasValue(value)) {
             diceGroup = activeDiceSet.getAllDiceOfValue(value);
             frozenDiceSet.addDice(diceGroup);
         } else {
             throw new ValueAlreadyFrozenException();
         }
+        reset();
+    }
+
+    private void reset() {
+        activeDiceSet = null;
+        frozenDiceSet = null;
+        diceGroup = null;
     }
 }
