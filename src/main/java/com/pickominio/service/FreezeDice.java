@@ -23,6 +23,13 @@ public class FreezeDice {
     }
 
     public void value(int value) throws Exception {
+        validate(value);
+        diceGroup = activeDiceSet.getAllDiceOfValue(value);
+        frozenDiceSet.addDice(diceGroup);
+        reset();
+    }
+
+    private void validate(int value) throws Exception {
         if(activeDiceSet == null || frozenDiceSet == null) {
             throw new Exception("Must use from().to().value() method call");
         }
@@ -31,13 +38,9 @@ public class FreezeDice {
             throw new ValueMissingException();
         }
 
-        if(!frozenDiceSet.hasValue(value)) {
-            diceGroup = activeDiceSet.getAllDiceOfValue(value);
-            frozenDiceSet.addDice(diceGroup);
-        } else {
+        if(frozenDiceSet.hasValue(value)) {
             throw new ValueAlreadyFrozenException();
         }
-        reset();
     }
 
     private void reset() {

@@ -5,7 +5,7 @@ import java.util.TreeSet;
 public class GrillWormSet extends WormSet {
     private GrillWormSet() {
         super();
-        this.resetGrillWormSet();
+        resetGrillWormSet();
     }
 
     public static GrillWormSet build() {
@@ -19,7 +19,13 @@ public class GrillWormSet extends WormSet {
         }
     }
 
+    public int getHighestWormValue() {
+        TreeSet<Worm> sortedSet = (TreeSet) wormSet;
+        return sortedSet.last().getValue();
+    }
+
     public Worm removeHighestWormFromGrill() {
-        return wormSet.pollLast();
+        TreeSet<Worm> sortedSet = (TreeSet) wormSet;
+        return sortedSet.pollLast();
     }
 }

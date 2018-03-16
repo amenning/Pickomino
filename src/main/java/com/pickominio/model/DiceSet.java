@@ -27,6 +27,10 @@ public class DiceSet {
         return diceSet.get(value).size() != 0;
     }
 
+    public boolean isEmpty() {
+        return getNumberOfDice() == 0;
+    }
+
     public List<Dice> getAllDiceOfValue(int value) {
         List<Dice> diceGroup = diceSet.get(value);
         diceSet.put(value, new ArrayList<Dice>());

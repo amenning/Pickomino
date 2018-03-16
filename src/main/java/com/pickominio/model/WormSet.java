@@ -4,13 +4,17 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class WormSet {
-    protected TreeSet<Worm> wormSet = new TreeSet<>();
+    protected Set<Worm> wormSet;
 
     protected WormSet() {
     }
 
     public static WormSet build() {
         return new WormSet();
+    }
+
+    public boolean isEmpty() {
+        return wormSet.isEmpty();
     }
 
     public boolean hasWorm(int value) {

@@ -5,7 +5,7 @@ public class FrozenDiceSet extends DiceSet {
         super();
     }
 
-    public static DiceSet buildNewSet() {
+    public static FrozenDiceSet buildNewSet() {
         return new FrozenDiceSet();
     }
 }
