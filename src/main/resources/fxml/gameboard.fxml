@@ -25,7 +25,7 @@
       <VBox BorderPane.alignment="CENTER">
          <children>
             <fx:include source="grill.fxml" />
-            <fx:include source="playerOptions.fxml" />
+            <fx:include fx:id="playerOption" source="playerOptions.fxml" />
             <fx:include source="dicePanel.fxml" />
             <fx:include source="playerWorms.fxml" />
          </children>

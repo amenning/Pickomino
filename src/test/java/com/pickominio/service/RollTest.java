@@ -14,25 +14,29 @@ import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.*;
 
 public class RollTest {
-    private DiceSet diceSet;
+    private ActiveDiceSet activeDiceSet;
     private Roll roll;
 
     @Before
     public void setUp() throws Exception {
-        diceSet = ActiveDiceSet.buildNewSet();
-        roll = new Roll();
+        activeDiceSet = ActiveDiceSet.buildNewSet();
+        roll = Roll.buildWithActiveDiceSet(activeDiceSet);
     }
 
     @Test
     public void diceSet() {
-        roll.diceSet(diceSet);
-        int[] values = Stream.of(diceSet.toString().split(" "))
+        roll.diceSet();
+        assertEquals(DiceSet.MAX_DICE_SET_SIZE, activeDiceSet.getNumberOfDice());
+        int[] values = Stream.of(activeDiceSet.toString().split(" "))
                 .mapToInt(value -> Integer.parseInt(value))
                 .toArray();
         for (int diceValue : values) {
             assertThat(
                 diceValue,
-                allOf(greaterThanOrEqualTo(Dice.MIN_DICE_VALUE), lessThanOrEqualTo(Dice.MAX_DICE_VALUE))
+                allOf(
+                    greaterThanOrEqualTo(Dice.MIN_DICE_VALUE),
+                    lessThanOrEqualTo(Dice.MAX_DICE_VALUE)
+                )
             );
         }
     }
