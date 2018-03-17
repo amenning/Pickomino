@@ -24,11 +24,15 @@ public class ResolveBunkTest {
 
     @Before
     public void setUp() throws Exception {
-        bunk = new ResolveBunk();
-        freezeDice = new FreezeDice();
-        grillWormSet = GrillWormSet.build();
         activeDiceSet = ActiveDiceSet.buildNewSet();
         frozenDiceSet = FrozenDiceSet.buildNewSet();
+        bunk = ResolveBunk.buildWithResetDiceService(
+            ResetDiceSets.build()
+                .registerActiveDiceSet(activeDiceSet)
+                .registerFrozenDiceSet(frozenDiceSet)
+        );
+        freezeDice = new FreezeDice();
+        grillWormSet = GrillWormSet.build();
         playerWormSet = PlayerWormSet.build();
         outOfGameWormSet = OutOfGameWormSet.build();
     }
@@ -37,7 +41,7 @@ public class ResolveBunkTest {
     public void incorrectUseException() throws Exception {
         exception.expect(Exception.class);
         exception.expectMessage(
-            "Must use from().to().withActiveDice().withFrozenDice().withOutOfGameWormSet().resolve() method call"
+            "Must use from().to().withOutOfGameWormSet().resolve() method call"
         );
 
         bunk.resolve();
@@ -82,8 +86,6 @@ public class ResolveBunkTest {
     private void callResolveBunk() throws Exception {
         bunk.from(playerWormSet)
             .to(grillWormSet)
-            .withActiveDice(activeDiceSet)
-            .withFrozenDice(frozenDiceSet)
             .withOutOfGameWormSet(outOfGameWormSet)
             .resolve();
     }

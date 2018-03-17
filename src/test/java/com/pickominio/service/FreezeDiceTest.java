@@ -37,7 +37,7 @@ public class FreezeDiceTest {
     }
 
     @Test
-    public void diceTransferedSuccessfully() throws Exception {
+    public void diceTransferredSuccessfully() throws Exception {
         freezeDice.from(activeDiceSet)
             .to(frozenDiceSet)
             .value(Dice.MAX_DICE_VALUE);

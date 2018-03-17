@@ -5,11 +5,20 @@ import com.pickominio.model.*;
 import java.util.TreeSet;
 
 public class ResolveBunk {
+    private final ResetDiceSets resetDiceSets;
     private DiceSet activeDiceSet;
     private DiceSet frozenDiceSet;
     private GrillWormSet grillWormSet;
     private PlayerWormSet playerWormSet;
     private OutOfGameWormSet outOfGameWormSet;
+
+    private ResolveBunk(ResetDiceSets resetDiceSets) {
+        this.resetDiceSets = resetDiceSets;
+    }
+
+    public static ResolveBunk buildWithResetDiceService(ResetDiceSets resetDiceSets) {
+        return new ResolveBunk(resetDiceSets);
+    }
 
     public ResolveBunk from(PlayerWormSet playerWormSet) {
         this.playerWormSet = playerWormSet;
@@ -18,16 +27,6 @@ public class ResolveBunk {
 
     public ResolveBunk to(GrillWormSet grillWormSet) {
         this.grillWormSet = grillWormSet;
-        return this;
-    }
-
-    public ResolveBunk withActiveDice(ActiveDiceSet activeDiceSet) {
-        this.activeDiceSet = activeDiceSet;
-        return this;
-    }
-
-    public ResolveBunk withFrozenDice(FrozenDiceSet frozenDiceSet) {
-        this.frozenDiceSet = frozenDiceSet;
         return this;
     }
 
@@ -41,8 +40,7 @@ public class ResolveBunk {
 
         Worm returningWorm;
         Worm bunkWorm;
-        frozenDiceSet.resetDiceSet();
-        activeDiceSet.resetDiceSet();
+        resetDiceSets.reset();
 
         if (!playerWormSet.isEmpty()) {
             returningWorm = playerWormSet.getNewestWorm();
@@ -57,20 +55,16 @@ public class ResolveBunk {
     }
 
     private void validate() throws Exception {
-        if(activeDiceSet == null
-            || frozenDiceSet == null
-            || grillWormSet == null
+        if(grillWormSet == null
             || playerWormSet == null
             || outOfGameWormSet == null) {
             throw new Exception(
-                    "Must use from().to().withActiveDice().withFrozenDice().withOutOfGameWormSet().resolve() method call"
+                    "Must use from().to().withOutOfGameWormSet().resolve() method call"
             );
         }
     }
 
     private void reset() {
-        activeDiceSet = null;
-        frozenDiceSet = null;
         grillWormSet = null;
         playerWormSet = null;
         outOfGameWormSet = null;
