@@ -16,6 +16,7 @@
         <Button mnemonicParsing="false"
                 prefHeight="40.0"
                 prefWidth="40.0"
+                fx:id="freezeButton"
                 text="">
         </Button>
     </children>
