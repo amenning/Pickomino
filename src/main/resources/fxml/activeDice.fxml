@@ -8,24 +8,21 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.StackPane?>
-<VBox id="activeDice" prefHeight="110.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" stylesheets="/css/activeDice.css" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="activeDice"
+      prefHeight="110.0"
+      prefWidth="1200.0"
+      xmlns="http://javafx.com/javafx/8.0.141"
+      stylesheets="/css/activeDice.css"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.pickominio.controller.ActiveDice">
     <children>
         <StackPane styleClass="titles-box" prefHeight="45.0" prefWidth="1200.0">
             <children>
                 <Text styleClass="titles" strokeType="OUTSIDE" strokeWidth="0.0" text="Active Dice" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="1200.0" />
             </children>
         </StackPane>
-        <HBox styleClass="active-dice, inset" alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
-            <children>
-                <fx:include source="dice.fxml" />
-                <fx:include source="dice.fxml" />
-                <fx:include source="dice.fxml" />
-                <fx:include source="dice.fxml" />
-                <fx:include source="dice.fxml" />
-                <fx:include source="dice.fxml" />
-                <fx:include source="dice.fxml" />
-                <fx:include source="dice.fxml" />
-            </children>
+        <HBox fx:id="activeDiceBox" styleClass="active-dice, inset" alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
+            <!-- Dice dynamically loaded here -->
         </HBox>
     </children>
     <padding>
